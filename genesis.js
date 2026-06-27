@@ -136,7 +136,7 @@ function drawGeometry() {
     ctx.beginPath();
     ctx.arc(p.x, p.y, 16, 0, Math.PI * 2);
     ctx.strokeStyle = "rgba(0,95,105,0.45)";
-    ctx.lineWidth = 1.3;
+    ctx.lineWidth = 1.2;
     ctx.stroke();
 
     ctx.beginPath();
@@ -153,8 +153,8 @@ function drawGeometry() {
         poles[i].y,
         poles[j].x,
         poles[j].y,
-        0.2,
-        0.9
+        0.35,
+        1.1
       );
     }
   }
@@ -179,15 +179,15 @@ function drawGeometry() {
     { x: CX - R * 0.37, y: CY + R * 0.22 }
   ];
 
-  drawLine(tri[0].x, tri[0].y, tri[1].x, tri[1].y, 0.62, 1.65);
-  drawLine(tri[1].x, tri[1].y, tri[2].x, tri[2].y, 0.62, 1.65);
-  drawLine(tri[2].x, tri[2].y, tri[0].x, tri[0].y, 0.62, 1.65);
+  drawLine(tri[0].x, tri[0].y, tri[1].x, tri[1].y, 0.62, 1.1);
+  drawLine(tri[1].x, tri[1].y, tri[2].x, tri[2].y, 0.62, 1.1);
+  drawLine(tri[2].x, tri[2].y, tri[0].x, tri[0].y, 0.62, 1.1);
 
   for (const t of tri) {
     ctx.beginPath();
     ctx.arc(t.x, t.y, R * 0.14, 0, Math.PI * 2);
     ctx.strokeStyle = "rgba(18,63,67,0.58)";
-    ctx.lineWidth = 1.4;
+    ctx.lineWidth = 1.1;
     ctx.stroke();
 
     ctx.beginPath();
