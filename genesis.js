@@ -153,13 +153,13 @@ function drawGeometry() {
         poles[i].y,
         poles[j].x,
         poles[j].y,
-        0.11,
-        0.65
+        0.2,
+        0.9
       );
     }
   }
 
-  // Slightly stronger neighboring couplings.
+  // Slightly lighter neighboring couplings.
   for (let i = 0; i < poles.length; i++) {
     const j = (i + 1) % poles.length;
     drawLine(
@@ -167,8 +167,8 @@ function drawGeometry() {
       poles[i].y,
       poles[j].x,
       poles[j].y,
-      0.16,
-    0.8
+      0.11,
+    0.6
     );
   }
 
