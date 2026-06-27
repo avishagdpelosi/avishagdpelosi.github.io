@@ -80,7 +80,7 @@ function drawGlow(breath) {
 );
 
 glow.addColorStop(
-    0.28,
+    0.35,
     "rgba(255,250,240,0.35)"
 );
 
@@ -150,7 +150,7 @@ function drawGeometry() {
   // pairwise couplings between all five processes
   for (let i = 0; i < poles.length; i++) {
     for (let j = i + 1; j < poles.length; j++) {
-      drawLine(poles[i].x, poles[i].y, poles[j].x, poles[j].y, 0.22, 1);
+      drawLine(poles[i].x, poles[i].y, poles[j].x, poles[j].y, 0.42, 1.1);
     }
   }
 
