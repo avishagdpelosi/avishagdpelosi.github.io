@@ -8,7 +8,7 @@ const poles = [];
 const N = 42000;
 
 const cyan = [0, 95, 105];
-const gold = [190, 128, 32];
+
 
 function resize() {
   const rect = canvas.getBoundingClientRect();
@@ -107,14 +107,20 @@ function drawParticles(time, breath) {
     const x = CX + Math.cos(aa) * rr;
     const y = CY + Math.sin(aa) * rr;
 
-    // Gold in center, progressively cyan outward.
-    const t = Math.min(1, Math.max(0, rr / R));
-    const c = mixColor(gold, cyan, t);
+  // 0 at center, 1 at outer cloud
+const t = Math.min(1, Math.max(0, rr / R));
 
-    ctx.beginPath();
-    ctx.arc(x, y, p.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${p.alpha})`;
-    ctx.fill();
+// brighter inside, darker outside
+const brightness = 1.35 - 0.45 * t;
+
+const r = Math.min(255, Math.round(teal[0] * brightness));
+const g = Math.min(255, Math.round(teal[1] * brightness));
+const b = Math.min(255, Math.round(teal[2] * brightness));
+
+ctx.beginPath();
+ctx.arc(x, y, p.size, 0, Math.PI * 2);
+ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha})`;
+ctx.fill();
   }
 }
 
