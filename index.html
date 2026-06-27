@@ -321,7 +321,9 @@
       const breath = smoothstep(raw);
 
       const visible = breath < 0.06 ? 0 : Math.pow(breath, 1.35) * 0.82;
-      structure.setAttribute("opacity", visible);
+     if (structure) {
+  structure.setAttribute("opacity", visible);
+}
 
       for (const p of particles) {
         let local = breath + 0.045 * Math.sin(time * 0.00055 + p.phase);
