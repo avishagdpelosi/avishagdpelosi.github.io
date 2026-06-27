@@ -147,25 +147,12 @@ function drawGeometry() {
     ctx.fill();
   }
 
-// internal couplings only: skip neighboring points on the outer pentagon
-for (let i = 0; i < poles.length; i++) {
-  for (let j = i + 1; j < poles.length; j++) {
-
-    const areNeighbors =
-      j === i + 1 || (i === 0 && j === poles.length - 1);
-
-    if (!areNeighbors) {
-      drawLine(
-        poles[i].x,
-        poles[i].y,
-        poles[j].x,
-        poles[j].y,
-        0.62,
-        1.1
-      );
-    }
-  }
-}
+// internal couplings only: five diagonals, no outer pentagon
+drawLine(poles[0].x, poles[0].y, poles[2].x, poles[2].y, 0.62, 1.1);
+drawLine(poles[0].x, poles[0].y, poles[3].x, poles[3].y, 0.62, 1.1);
+drawLine(poles[1].x, poles[1].y, poles[3].x, poles[3].y, 0.62, 1.1);
+drawLine(poles[1].x, poles[1].y, poles[4].x, poles[4].y, 0.62, 1.1);
+drawLine(poles[2].x, poles[2].y, poles[4].x, poles[4].y, 0.62, 1.1);
 
   // former triad
   const tri = [
