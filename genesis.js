@@ -6,9 +6,7 @@ const particles = [];
 const poles = [];
 
 const N = 42000;
-
-const cyan = [0, 95, 105];
-
+const teal = [0, 95, 105];
 
 function resize() {
   const rect = canvas.getBoundingClientRect();
@@ -30,8 +28,7 @@ function resize() {
     const a = -Math.PI / 2 + i * 2 * Math.PI / 5;
     poles.push({
       x: CX + Math.cos(a) * R,
-      y: CY + Math.sin(a) * R,
-      a
+      y: CY + Math.sin(a) * R
     });
   }
 }
@@ -44,17 +41,17 @@ function randn() {
 }
 
 function initParticles() {
-  particles.length = [];
+  particles.length = 0;
 
   for (let i = 0; i < N; i++) {
     const mode = Math.random();
     const angle = Math.random() * Math.PI * 2;
     let radius;
 
-    // Dense golden center + dense cyan outer cloud + sparse middle.
-    if (mode < 0.18) {
+    // fewer central dots, strong outer cloud, sparse middle
+    if (mode < 0.12) {
       radius = Math.abs(randn()) * R * 0.18;
-    } else if (mode < 0.90) {
+    } else if (mode < 0.88) {
       radius = R + randn() * 44;
     } else {
       radius = R * 0.45 + Math.random() * R * 0.35;
@@ -74,14 +71,6 @@ function initParticles() {
   }
 }
 
-function mixColor(c1, c2, t) {
-  return [
-    Math.round(c1[0] * (1 - t) + c2[0] * t),
-    Math.round(c1[1] * (1 - t) + c2[1] * t),
-    Math.round(c1[2] * (1 - t) + c2[2] * t)
-  ];
-}
-
 function drawGlow(breath) {
   const glow = ctx.createRadialGradient(CX, CY, R * 0.03, CX, CY, R * 1.45);
 
@@ -95,7 +84,7 @@ function drawGlow(breath) {
   ctx.fill();
 }
 
-function drawParticles(time, breath) {
+function drawParticles(time) {
   for (const p of particles) {
     const wobble =
       Math.sin(time * 0.00045 + p.phase) * p.noise +
@@ -107,20 +96,18 @@ function drawParticles(time, breath) {
     const x = CX + Math.cos(aa) * rr;
     const y = CY + Math.sin(aa) * rr;
 
-  // 0 at center, 1 at outer cloud
-const t = Math.min(1, Math.max(0, rr / R));
+    // one teal color: brighter inside, darker outside
+    const t = Math.min(1, Math.max(0, rr / R));
+    const brightness = 1.55 - 0.65 * t;
 
-// brighter inside, darker outside
-const brightness = 1.35 - 0.45 * t;
+    const r = Math.min(255, Math.round(teal[0] * brightness));
+    const g = Math.min(255, Math.round(teal[1] * brightness));
+    const b = Math.min(255, Math.round(teal[2] * brightness));
 
-const r = Math.min(255, Math.round(teal[0] * brightness));
-const g = Math.min(255, Math.round(teal[1] * brightness));
-const b = Math.min(255, Math.round(teal[2] * brightness));
-
-ctx.beginPath();
-ctx.arc(x, y, p.size, 0, Math.PI * 2);
-ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha})`;
-ctx.fill();
+    ctx.beginPath();
+    ctx.arc(x, y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha})`;
+    ctx.fill();
   }
 }
 
@@ -137,7 +124,6 @@ function drawGeometry() {
   ctx.save();
   ctx.globalAlpha = 0.98;
 
-  // Outer five points.
   for (const p of poles) {
     ctx.beginPath();
     ctx.arc(p.x, p.y, 16, 0, Math.PI * 2);
@@ -151,34 +137,14 @@ function drawGeometry() {
     ctx.fill();
   }
 
-  // Couplings: pairwise relations between all five processes, not a pentagram emphasis.
+  // pairwise couplings between all five processes
   for (let i = 0; i < poles.length; i++) {
     for (let j = i + 1; j < poles.length; j++) {
-      drawLine(
-        poles[i].x,
-        poles[i].y,
-        poles[j].x,
-        poles[j].y,
-        0.35,
-        1.1
-      );
+      drawLine(poles[i].x, poles[i].y, poles[j].x, poles[j].y, 0.22, 0.85);
     }
   }
 
-  // Slightly lighter neighboring couplings.
-  for (let i = 0; i < poles.length; i++) {
-    const j = (i + 1) % poles.length;
-    drawLine(
-      poles[i].x,
-      poles[i].y,
-      poles[j].x,
-      poles[j].y,
-      0.11,
-    0.6
-    );
-  }
-
-  // Former triad.
+  // former triad
   const tri = [
     { x: CX, y: CY - R * 0.44 },
     { x: CX + R * 0.37, y: CY + R * 0.22 },
@@ -216,7 +182,7 @@ function animate(time) {
   const breath = (Math.sin(time * 0.00023) + 1) / 2;
 
   drawGlow(breath);
-  drawParticles(time, breath);
+  drawParticles(time);
   drawGeometry();
 
   requestAnimationFrame(animate);
