@@ -31,17 +31,17 @@
     }
 
     .name {
-      font-family: Georgia, serif;
-      font-size: 0.95rem;
-      letter-spacing: 0.32em;
+    font-family: Georgia, serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.28em;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
     nav a {
-      margin-left: 36px;
-      font-size: 0.68rem;
-      letter-spacing: 0.26em;
+    margin-left: 40px;
+    font-size: 0.82rem;
+    letter-spacing: 0.20em;
       text-transform: uppercase;
       color: #111;
       text-decoration: none;
@@ -205,7 +205,14 @@
   <line class="structure-faint" x1="0" y1="0" x2="-97" y2="133.5"></line>
   <line class="structure-faint" x1="0" y1="0" x2="-156.9" y2="-51"></line>
 
-  <!-- original triad structure -->
+   <!-- connecting lines between the five outer points -->
+<line class="structure-faint" x1="0" y1="-165" x2="156.9" y2="-51"></line>
+<line class="structure-faint" x1="156.9" y1="-51" x2="97" y2="133.5"></line>
+<line class="structure-faint" x1="97" y1="133.5" x2="-97" y2="133.5"></line>
+<line class="structure-faint" x1="-97" y1="133.5" x2="-156.9" y2="-51"></line>
+<line class="structure-faint" x1="-156.9" y1="-51" x2="0" y2="-165"></line>
+
+     <!-- triad structure -->
   <polygon class="structure-line" points="0,-78 67,39 -67,39"></polygon>
   <circle class="structure-line" cx="0" cy="-78" r="22"></circle>
   <circle class="structure-line" cx="67" cy="39" r="22"></circle>
@@ -282,7 +289,7 @@
         const centerRadius = Math.pow(Math.random(), 1.9) * 34;
 
         const outerAngle = Math.random() * Math.PI * 2;
-        const outerRadius = 165 + gaussian() * 11;
+       const outerRadius = 168 + gaussian() * 13;;
 
         particles.push({
           cx: Math.cos(centerAngle) * centerRadius + gaussian() * 2,
@@ -290,7 +297,7 @@
           ox: Math.cos(outerAngle) * outerRadius,
           oy: Math.sin(outerAngle) * outerRadius,
           size: Math.random() * 0.72 + 0.36,
-          alpha: Math.random() * 0.31 + 0.15,
+          alpha: Math.random() * 0.36 + 0.18,
           phase: Math.random() * Math.PI * 2,
           drift: Math.random() * 2.4 + 0.4
         });
