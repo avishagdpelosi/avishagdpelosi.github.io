@@ -52,8 +52,8 @@ function initParticles() {
     let radius;
 
     // Dense golden center + dense cyan outer cloud + sparse middle.
-    if (mode < 0.35) {
-      radius = Math.abs(randn()) * R * 0.20;
+    if (mode < 0.18) {
+      radius = Math.abs(randn()) * R * 0.18;
     } else if (mode < 0.90) {
       radius = R + randn() * 44;
     } else {
