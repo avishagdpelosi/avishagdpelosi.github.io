@@ -11,13 +11,9 @@
       --text: #111;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -57,9 +53,7 @@
       opacity: 0.75;
     }
 
-    nav a:hover {
-      opacity: 1;
-    }
+    nav a:hover { opacity: 1; }
 
     .hero {
       min-height: 100vh;
@@ -107,7 +101,7 @@
 
     .symbol {
       position: relative;
-      width: min(590px, 78vw);
+      width: min(650px, 82vw);
       aspect-ratio: 1 / 1;
       margin-top: 4px;
     }
@@ -120,31 +114,25 @@
       height: 100%;
     }
 
-    svg {
-      pointer-events: none;
-    }
+    svg { pointer-events: none; }
 
-    .outer-ring {
+    .structure-line {
       fill: none;
       stroke: #111;
-      stroke-width: 0.65;
-      stroke-dasharray: 1.5 7;
+      stroke-width: 0.72;
+      stroke-opacity: 0.36;
     }
 
-    .triad-circle {
+    .structure-faint {
       fill: none;
       stroke: #111;
-      stroke-width: 0.75;
+      stroke-width: 0.7;
+      stroke-opacity: 0.23;
     }
 
-    .triad-line {
-      stroke: #111;
-      stroke-width: 0.75;
-    }
-
-    .outer-point,
-    .center-point {
+    .structure-point {
       fill: #111;
+      opacity: 0.55;
     }
 
     .explore {
@@ -163,14 +151,8 @@
     }
 
     @keyframes arrow {
-      0%, 100% {
-        transform: translateY(0);
-        opacity: 0.35;
-      }
-      50% {
-        transform: translateY(8px);
-        opacity: 0.9;
-      }
+      0%, 100% { transform: translateY(0); opacity: 0.35; }
+      50% { transform: translateY(8px); opacity: 0.9; }
     }
 
     section {
@@ -206,18 +188,14 @@
         letter-spacing: 0.18em;
       }
 
-      .hero {
-        padding-top: 160px;
-      }
+      .hero { padding-top: 160px; }
 
       .keywords {
         letter-spacing: 0.22em;
         line-height: 2;
       }
 
-      .keywords span {
-        margin: 0 8px;
-      }
+      .keywords span { margin: 0 8px; }
     }
   </style>
 </head>
@@ -247,26 +225,36 @@
       <canvas id="particleCanvas"></canvas>
 
       <svg viewBox="-220 -220 440 440">
-        <g id="geometry" opacity="0">
-          <circle class="outer-ring" r="178"></circle>
+        <g id="structure" opacity="0">
+          <!-- outer circle, slightly beyond the cloud and five points -->
+          <circle class="structure-faint" cx="0" cy="0" r="188"></circle>
 
-          <circle class="outer-point" cx="0" cy="-165" r="2.4"></circle>
-          <circle class="outer-point" cx="156.9" cy="-51" r="2.4"></circle>
-          <circle class="outer-point" cx="97" cy="133.5" r="2.4"></circle>
-          <circle class="outer-point" cx="-97" cy="133.5" r="2.4"></circle>
-          <circle class="outer-point" cx="-156.9" cy="-51" r="2.4"></circle>
+          <!-- lines from center to five points -->
+          <line class="structure-faint" x1="0" y1="0" x2="0" y2="-170"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="161.7" y2="-52.5"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="100" y2="137.5"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="-100" y2="137.5"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="-161.7" y2="-52.5"></line>
 
-          <!-- Three overlapping circles, no color, no text -->
-          <circle class="triad-circle" cx="0" cy="-44" r="62"></circle>
-          <circle class="triad-circle" cx="-54" cy="46" r="62"></circle>
-          <circle class="triad-circle" cx="54" cy="46" r="62"></circle>
+          <!-- five points -->
+          <circle class="structure-point" cx="0" cy="-170" r="2.5"></circle>
+          <circle class="structure-point" cx="161.7" cy="-52.5" r="2.5"></circle>
+          <circle class="structure-point" cx="100" cy="137.5" r="2.5"></circle>
+          <circle class="structure-point" cx="-100" cy="137.5" r="2.5"></circle>
+          <circle class="structure-point" cx="-161.7" cy="-52.5" r="2.5"></circle>
 
-          <!-- Connected triangle between circle centers -->
-          <line class="triad-line" x1="0" y1="-44" x2="-54" y2="46"></line>
-          <line class="triad-line" x1="0" y1="-44" x2="54" y2="46"></line>
-          <line class="triad-line" x1="-54" y1="46" x2="54" y2="46"></line>
+          <!-- three smaller overlapping circles, like your reference, no color/text -->
+          <circle class="structure-line" cx="0" cy="-45" r="54"></circle>
+          <circle class="structure-line" cx="-48" cy="38" r="54"></circle>
+          <circle class="structure-line" cx="48" cy="38" r="54"></circle>
 
-          <circle class="center-point" cx="0" cy="0" r="3.2"></circle>
+          <!-- internal triangle connecting the centers -->
+          <line class="structure-line" x1="0" y1="-45" x2="-48" y2="38"></line>
+          <line class="structure-line" x1="0" y1="-45" x2="48" y2="38"></line>
+          <line class="structure-line" x1="-48" y1="38" x2="48" y2="38"></line>
+
+          <!-- center point -->
+          <circle class="structure-point" cx="0" cy="0" r="3.2"></circle>
         </g>
       </svg>
     </div>
@@ -298,11 +286,11 @@
   <script>
     const canvas = document.getElementById("particleCanvas");
     const ctx = canvas.getContext("2d");
-    const geometry = document.getElementById("geometry");
+    const structure = document.getElementById("structure");
 
     let cssW, cssH, CX, CY, scale;
     const particles = [];
-    const N = 1900;
+    const N = 2100;
 
     function resize() {
       const rect = canvas.getBoundingClientRect();
@@ -336,17 +324,17 @@
         const centerRadius = Math.pow(Math.random(), 1.9) * 34;
 
         const outerAngle = Math.random() * Math.PI * 2;
-        const outerRadius = 144 + gaussian() * 8;
+        const outerRadius = 165 + gaussian() * 10;
 
         particles.push({
           cx: Math.cos(centerAngle) * centerRadius + gaussian() * 2,
           cy: Math.sin(centerAngle) * centerRadius + gaussian() * 2,
           ox: Math.cos(outerAngle) * outerRadius,
           oy: Math.sin(outerAngle) * outerRadius,
-          size: Math.random() * 0.85 + 0.42,
-          alpha: Math.random() * 0.38 + 0.18,
+          size: Math.random() * 0.72 + 0.35,
+          alpha: Math.random() * 0.30 + 0.14,
           phase: Math.random() * Math.PI * 2,
-          drift: Math.random() * 3.5 + 0.5
+          drift: Math.random() * 2.6 + 0.4
         });
       }
     }
@@ -361,22 +349,16 @@
       const raw = (Math.sin(time * 0.00024) + 1) / 2;
       const breath = smoothstep(raw);
 
-      const geometryOpacity = Math.pow(breath, 1.8) * 0.42;
-      geometry.setAttribute("opacity", geometryOpacity);
+      const visible = breath < 0.06 ? 0 : Math.pow(breath, 1.35) * 0.82;
+      structure.setAttribute("opacity", visible);
 
       for (const p of particles) {
-        const local = Math.min(
-          1,
-          Math.max(
-            0,
-            breath + 0.05 * Math.sin(time * 0.0006 + p.phase)
-          )
-        );
-
+        let local = breath + 0.045 * Math.sin(time * 0.00055 + p.phase);
+        local = Math.min(1, Math.max(0, local));
         const e = smoothstep(local);
 
-        const wobbleX = Math.sin(time * 0.0007 + p.phase) * p.drift;
-        const wobbleY = Math.cos(time * 0.00065 + p.phase) * p.drift;
+        const wobbleX = Math.sin(time * 0.00065 + p.phase) * p.drift;
+        const wobbleY = Math.cos(time * 0.0006 + p.phase) * p.drift;
 
         const x = CX + (p.cx * (1 - e) + p.ox * e + wobbleX) * scale;
         const y = CY + (p.cy * (1 - e) + p.oy * e + wobbleY) * scale;
