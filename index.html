@@ -12,8 +12,10 @@
 
     body {
       margin: 0;
-      background: radial-gradient(circle at center, #ffffff 0%, #fbfaf7 72%);
-      color: #111;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(226, 174, 82, 0.18), transparent 28%),
+        radial-gradient(circle at center, #ffffff 0%, #faf7ef 62%, #efece3 100%);
+      color: #101414;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
     }
@@ -22,35 +24,37 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 34px 5vw;
+      padding: 38px 5vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 20;
-      background: linear-gradient(to bottom, rgba(251,250,247,0.96), rgba(251,250,247,0));
+      background: linear-gradient(to bottom, rgba(250,247,239,0.96), rgba(250,247,239,0));
     }
 
     .name {
-    font-family: Georgia, serif;
-    font-size: 1.15rem;
-    letter-spacing: 0.28em;
+      font-family: Georgia, serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
     nav a {
-    margin-left: 40px;
-    font-size: 0.82rem;
-    letter-spacing: 0.20em;
+      margin-left: 42px;
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #111;
+      color: #101414;
       text-decoration: none;
-      opacity: 0.75;
+      opacity: 0.8;
     }
+
+    nav a:hover { color: #1d6b70; opacity: 1; }
 
     .hero {
       min-height: 100vh;
-      padding: 120px 6vw 60px;
+      padding: 120px 6vw 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -62,39 +66,42 @@
       margin: 0;
       font-family: Georgia, serif;
       font-weight: 400;
-      line-height: 1.05;
+      line-height: 1.02;
     }
 
     h1 .line-one {
       display: block;
-      font-size: clamp(2.8rem, 5.4vw, 5.2rem);
+      font-size: clamp(3rem, 5.6vw, 5.5rem);
     }
 
     h1 .line-two {
       display: block;
-      margin-top: 0.08em;
-      font-size: clamp(2.05rem, 4.3vw, 4.1rem);
+      margin-top: 0.04em;
+      font-size: clamp(2.35rem, 4.7vw, 4.7rem);
       font-style: italic;
+      color: #165f64;
     }
 
     .keywords {
-      margin-top: 28px;
-      margin-bottom: 8px;
-      font-size: 0.66rem;
-      letter-spacing: 0.42em;
+      margin-top: 34px;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
+      color: #165f64;
+      font-weight: 500;
     }
 
     .keywords span {
-      margin: 0 14px;
-      color: #777;
+      margin: 0 18px;
+      color: #806b45;
     }
 
     .symbol {
       position: relative;
-      width: min(680px, 84vw);
+      width: min(720px, 88vw);
       aspect-ratio: 1 / 1;
-      margin-top: 4px;
+      margin-top: -8px;
     }
 
     canvas, svg {
@@ -108,34 +115,41 @@
 
     .structure-line {
       fill: none;
-      stroke: #111;
-      stroke-width: 0.75;
-      stroke-opacity: 0.36;
+      stroke: #163f43;
+      stroke-width: 0.85;
+      stroke-opacity: 0.42;
     }
 
     .structure-faint {
       fill: none;
-      stroke: #111;
+      stroke: #163f43;
       stroke-width: 0.7;
-      stroke-opacity: 0.22;
+      stroke-opacity: 0.24;
     }
 
     .structure-point {
-      fill: #111;
-      opacity: 0.62;
+      fill: #165f64;
+      opacity: 0.85;
+    }
+
+    .warm-point {
+      fill: #9c7a3a;
+      opacity: 0.75;
     }
 
     .explore {
-      margin-top: 2px;
-      font-size: 0.65rem;
+      margin-top: -4px;
+      font-size: 0.72rem;
       letter-spacing: 0.42em;
       text-transform: uppercase;
-      opacity: 0.78;
+      color: #165f64;
+      opacity: 0.9;
     }
 
     .arrow {
-      margin-top: 10px;
-      font-size: 1.6rem;
+      margin-top: 8px;
+      font-size: 1.8rem;
+      color: #165f64;
       animation: arrow 2.4s ease-in-out infinite;
     }
 
@@ -144,23 +158,59 @@
       50% { transform: translateY(8px); opacity: 0.9; }
     }
 
-    section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 90px 8vw;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid rgba(0,0,0,0.10);
+      background: rgba(255,255,255,0.36);
     }
 
-    h2 {
-      font-family: Georgia, serif;
-      font-size: 2.35rem;
-      font-weight: 400;
-      margin-bottom: 22px;
+    .card {
+      padding: 48px 5vw;
+      border-right: 1px solid rgba(0,0,0,0.10);
+      min-height: 210px;
     }
 
-    p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: #333;
+    .card:last-child { border-right: none; }
+
+    .card h2 {
+      margin: 0 0 18px;
+      font-size: 1rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #165f64;
+      font-weight: 500;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #222;
+      max-width: 260px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        position: absolute;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      nav a {
+        margin: 0 10px;
+        font-size: 0.7rem;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.10);
+      }
     }
   </style>
 </head>
@@ -189,71 +239,64 @@
     <div class="symbol">
       <canvas id="particleCanvas"></canvas>
 
-      
-    
-    
       <svg viewBox="-220 -220 440 440">
         <g id="structure" opacity="0">
-  <!-- five points on outer cloud -->
-  <circle class="structure-point" cx="0" cy="-165" r="2.7"></circle>
-  <circle class="structure-point" cx="156.9" cy="-51" r="2.7"></circle>
-  <circle class="structure-point" cx="97" cy="133.5" r="2.7"></circle>
-  <circle class="structure-point" cx="-97" cy="133.5" r="2.7"></circle>
-  <circle class="structure-point" cx="-156.9" cy="-51" r="2.7"></circle>
+          <!-- five points on outer cloud -->
+          <circle class="structure-point" cx="0" cy="-165" r="3.2"></circle>
+          <circle class="structure-point" cx="156.9" cy="-51" r="3.2"></circle>
+          <circle class="structure-point" cx="97" cy="133.5" r="3.2"></circle>
+          <circle class="structure-point" cx="-97" cy="133.5" r="3.2"></circle>
+          <circle class="structure-point" cx="-156.9" cy="-51" r="3.2"></circle>
 
-  <!-- lines from center to five points      -->
-  <line class="structure-faint" x1="0" y1="0" x2="0" y2="-165"></line>
-  <line class="structure-faint" x1="0" y1="0" x2="156.9" y2="-51"></line>
-  <line class="structure-faint" x1="0" y1="0" x2="97" y2="133.5"></line>
-  <line class="structure-faint" x1="0" y1="0" x2="-97" y2="133.5"></line>
-  <line class="structure-faint" x1="0" y1="0" x2="-156.9" y2="-51"></line>
-     
+          <!-- connecting pentagon -->
+          <line class="structure-faint" x1="0" y1="-165" x2="156.9" y2="-51"></line>
+          <line class="structure-faint" x1="156.9" y1="-51" x2="97" y2="133.5"></line>
+          <line class="structure-faint" x1="97" y1="133.5" x2="-97" y2="133.5"></line>
+          <line class="structure-faint" x1="-97" y1="133.5" x2="-156.9" y2="-51"></line>
+          <line class="structure-faint" x1="-156.9" y1="-51" x2="0" y2="-165"></line>
 
-   <!-- connecting lines between the five outer points 
-<line class="structure-faint" x1="0" y1="-165" x2="156.9" y2="-51"></line>
-<line class="structure-faint" x1="156.9" y1="-51" x2="97" y2="133.5"></line>
-<line class="structure-faint" x1="97" y1="133.5" x2="-97" y2="133.5"></line>
-<line class="structure-faint" x1="-97" y1="133.5" x2="-156.9" y2="-51"></line>
-<line class="structure-faint" x1="-156.9" y1="-51" x2="0" y2="-165"></line>
-          -->
+          <!-- lines from center -->
+          <line class="structure-faint" x1="0" y1="0" x2="0" y2="-165"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="156.9" y2="-51"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="97" y2="133.5"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="-97" y2="133.5"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="-156.9" y2="-51"></line>
 
-     <!-- triad structure -->
-  <polygon class="structure-line" points="0,-78 67,39 -67,39"></polygon>
-  <circle class="structure-line" cx="0" cy="-78" r="22"></circle>
-  <circle class="structure-line" cx="67" cy="39" r="22"></circle>
-  <circle class="structure-line" cx="-67" cy="39" r="22"></circle>
+          <!-- original triad -->
+          <polygon class="structure-line" points="0,-78 67,39 -67,39"></polygon>
+          <circle class="structure-line" cx="0" cy="-78" r="22"></circle>
+          <circle class="structure-line" cx="67" cy="39" r="22"></circle>
+          <circle class="structure-line" cx="-67" cy="39" r="22"></circle>
 
-  <!-- center point -->
-  <circle class="structure-point" cx="0" cy="0" r="3"></circle>
-</g>
+          <circle class="warm-point" cx="0" cy="0" r="3.4"></circle>
+        </g>
       </svg>
-
-
-      
     </div>
 
     <div class="explore">Explore</div>
     <div class="arrow">↓</div>
   </main>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>This section will introduce the research identity: bridging formal scientific models with the structure of lived experience.</p>
-  </section>
+  <section class="cards">
+    <div class="card" id="about">
+      <h2>About</h2>
+      <p>Bridging formal scientific models with the structure of lived experience.</p>
+    </div>
 
-  <section id="research">
-    <h2>Research</h2>
-    <p>Current research includes GENESIS, agency and free choice, experimental consciousness studies, and motor dynamics.</p>
-  </section>
+    <div class="card" id="research">
+      <h2>Research</h2>
+      <p>GENESIS, agency and free choice, experimental consciousness, and motor dynamics.</p>
+    </div>
 
-  <section id="publications">
-    <h2>Publications</h2>
-    <p>Publications and working papers will be added here.</p>
-  </section>
+    <div class="card" id="publications">
+      <h2>Publications</h2>
+      <p>Academic papers and working manuscripts will be added here.</p>
+    </div>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Contact information and academic profile links will be added here.</p>
+    <div class="card" id="contact">
+      <h2>Contact</h2>
+      <p>Get in touch and connect.</p>
+    </div>
   </section>
 
   <script>
@@ -263,7 +306,7 @@
 
     let cssW, cssH, CX, CY, scale;
     const particles = [];
-    const N = 2300;
+    const N = 2500;
 
     function resize() {
       const rect = canvas.getBoundingClientRect();
@@ -297,17 +340,17 @@
         const centerRadius = Math.pow(Math.random(), 1.9) * 34;
 
         const outerAngle = Math.random() * Math.PI * 2;
-       const outerRadius = 168 + gaussian() * 13;;
+        const outerRadius = 168 + gaussian() * 14;
 
         particles.push({
           cx: Math.cos(centerAngle) * centerRadius + gaussian() * 2,
           cy: Math.sin(centerAngle) * centerRadius + gaussian() * 2,
           ox: Math.cos(outerAngle) * outerRadius,
           oy: Math.sin(outerAngle) * outerRadius,
-          size: Math.random() * 0.72 + 0.36,
-          alpha: Math.random() * 0.36 + 0.18,
+          size: Math.random() * 0.82 + 0.38,
+          alpha: Math.random() * 0.28 + 0.12,
           phase: Math.random() * Math.PI * 2,
-          drift: Math.random() * 2.4 + 0.4
+          drift: Math.random() * 2.8 + 0.4
         });
       }
     }
@@ -322,10 +365,8 @@
       const raw = (Math.sin(time * 0.00024) + 1) / 2;
       const breath = smoothstep(raw);
 
-      const visible = breath < 0.06 ? 0 : Math.pow(breath, 1.35) * 0.82;
-     if (structure) {
-  structure.setAttribute("opacity", visible);
-}
+      const visible = breath < 0.06 ? 0 : Math.pow(breath, 1.35) * 0.88;
+      if (structure) structure.setAttribute("opacity", visible);
 
       for (const p of particles) {
         let local = breath + 0.045 * Math.sin(time * 0.00055 + p.phase);
@@ -338,9 +379,17 @@
         const x = CX + (p.cx * (1 - e) + p.ox * e + wobbleX) * scale;
         const y = CY + (p.cy * (1 - e) + p.oy * e + wobbleY) * scale;
 
+        const teal = [31, 93, 98];
+        const gold = [156, 122, 58];
+        const mix = e * 0.28;
+
+        const r = Math.round(teal[0] * (1 - mix) + gold[0] * mix);
+        const g = Math.round(teal[1] * (1 - mix) + gold[1] * mix);
+        const b = Math.round(teal[2] * (1 - mix) + gold[2] * mix);
+
         ctx.beginPath();
         ctx.arc(x, y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 0, 0, ${p.alpha})`;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha})`;
         ctx.fill();
       }
 
