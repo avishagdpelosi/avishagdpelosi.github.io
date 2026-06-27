@@ -153,8 +153,8 @@ function drawGeometry() {
         poles[i].y,
         poles[j].x,
         poles[j].y,
-        0.18,
-        0.8
+        0.11,
+        0.65
       );
     }
   }
@@ -167,8 +167,8 @@ function drawGeometry() {
       poles[i].y,
       poles[j].x,
       poles[j].y,
-      0.34,
-      1.15
+      0.16,
+    0.8
     );
   }
 
