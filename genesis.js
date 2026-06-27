@@ -136,7 +136,7 @@ function drawGeometry() {
 
   for (const p of poles) {
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 16, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
     ctx.strokeStyle ="rgba(0,82,88,1)";
     ctx.lineWidth = 1.2;
     ctx.stroke();
@@ -148,22 +148,22 @@ function drawGeometry() {
   }
 
 // internal couplings only: five diagonals, no outer pentagon
-drawLine(poles[0].x, poles[0].y, poles[2].x, poles[2].y, 0.62, 1.1);
-drawLine(poles[0].x, poles[0].y, poles[3].x, poles[3].y, 0.62, 1.1);
-drawLine(poles[1].x, poles[1].y, poles[3].x, poles[3].y, 0.62, 1.1);
-drawLine(poles[1].x, poles[1].y, poles[4].x, poles[4].y, 0.62, 1.1);
-drawLine(poles[2].x, poles[2].y, poles[4].x, poles[4].y, 0.62, 1.1);
+drawLine(poles[0].x, poles[0].y, poles[2].x, poles[2].y, 0.5, 1.1);
+drawLine(poles[0].x, poles[0].y, poles[3].x, poles[3].y, 0.5, 1.1);
+drawLine(poles[1].x, poles[1].y, poles[3].x, poles[3].y, 0.5, 1.1);
+drawLine(poles[1].x, poles[1].y, poles[4].x, poles[4].y, 0.5, 1.1);
+drawLine(poles[2].x, poles[2].y, poles[4].x, poles[4].y, 0.5, 1.1);
 
   // former triad
   const tri = [
     { x: CX, y: CY - R * 0.44 },
-    { x: CX + R * 0.37, y: CY + R * 0.22 },
-    { x: CX - R * 0.37, y: CY + R * 0.22 }
+    { x: CX + R * 0.37, y: CY + R * 0.2 },
+    { x: CX - R * 0.37, y: CY + R * 0.2 }
   ];
 
-  drawLine(tri[0].x, tri[0].y, tri[1].x, tri[1].y, 0.62, 1.1);
-  drawLine(tri[1].x, tri[1].y, tri[2].x, tri[2].y, 0.62, 1.1);
-  drawLine(tri[2].x, tri[2].y, tri[0].x, tri[0].y, 0.62, 1.1);
+  drawLine(tri[0].x, tri[0].y, tri[1].x, tri[1].y, 0.5, 1.1);
+  drawLine(tri[1].x, tri[1].y, tri[2].x, tri[2].y, 0.5, 1.1);
+  drawLine(tri[2].x, tri[2].y, tri[0].x, tri[0].y, 0.5, 1.1);
 
   for (const t of tri) {
     ctx.beginPath();
