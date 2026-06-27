@@ -51,7 +51,7 @@ function initParticles() {
     // fewer central dots, strong outer cloud, sparse middle
     if (mode < 0.12) {
       radius = Math.abs(randn()) * R * 0.18;
-    } else if (mode < 0.88) {
+    } else if (mode < 0.92) {
       radius = R + randn() * 44;
     } else {
       radius = R * 0.45 + Math.random() * R * 0.35;
@@ -76,12 +76,12 @@ function drawGlow(breath) {
 
  glow.addColorStop(
     0,
-    `rgba(226,170,70,0.10)`
+    "rgba(255,252,245,0.85)"
 );
 
 glow.addColorStop(
-    0.30,
-    `rgba(0,95,105,0.05)`
+    0.28,
+    "rgba(255,250,240,0.35)"
 );
 
 glow.addColorStop(
@@ -150,7 +150,7 @@ function drawGeometry() {
   // pairwise couplings between all five processes
   for (let i = 0; i < poles.length; i++) {
     for (let j = i + 1; j < poles.length; j++) {
-      drawLine(poles[i].x, poles[i].y, poles[j].x, poles[j].y, 0.22, 0.85);
+      drawLine(poles[i].x, poles[i].y, poles[j].x, poles[j].y, 0.22, 1);
     }
   }
 
