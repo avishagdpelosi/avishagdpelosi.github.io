@@ -137,7 +137,7 @@ function drawGeometry() {
   for (const p of poles) {
     ctx.beginPath();
     ctx.arc(p.x, p.y, 16, 0, Math.PI * 2);
-    ctx.strokeStyle = "rgba(0,95,105,0.45)";
+    ctx.strokeStyle ="rgba(0,82,88,1)";
     ctx.lineWidth = 1.2;
     ctx.stroke();
 
@@ -150,7 +150,7 @@ function drawGeometry() {
   // pairwise couplings between all five processes
   for (let i = 0; i < poles.length; i++) {
     for (let j = i + 1; j < poles.length; j++) {
-      drawLine(poles[i].x, poles[i].y, poles[j].x, poles[j].y, 0.42, 1.1);
+      drawLine(poles[i].x, poles[i].y, poles[j].x, poles[j].y, 0.62, 1.1);
     }
   }
 
