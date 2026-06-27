@@ -147,12 +147,25 @@ function drawGeometry() {
     ctx.fill();
   }
 
-  // pairwise couplings between all five processes
-  for (let i = 0; i < poles.length; i++) {
-    for (let j = i + 1; j < poles.length; j++) {
-      drawLine(poles[i].x, poles[i].y, poles[j].x, poles[j].y, 0.62, 1.1);
+// internal couplings only: skip neighboring points on the outer pentagon
+for (let i = 0; i < poles.length; i++) {
+  for (let j = i + 1; j < poles.length; j++) {
+
+    const areNeighbors =
+      j === i + 1 || (i === 0 && j === poles.length - 1);
+
+    if (!areNeighbors) {
+      drawLine(
+        poles[i].x,
+        poles[i].y,
+        poles[j].x,
+        poles[j].y,
+        0.62,
+        1.1
+      );
     }
   }
+}
 
   // former triad
   const tri = [
