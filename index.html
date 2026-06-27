@@ -6,10 +6,26 @@
   <title>Avishag D. Pelosi</title>
 
   <style>
+    :root {
+      --bg: #fbfaf7;
+      --text: #111111;
+      --muted: #6f6f6f;
+      --line: rgba(0, 0, 0, 0.14);
+      --faint: rgba(0, 0, 0, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      background: #fbfaf7;
-      color: #111;
+      background: radial-gradient(circle at center, #ffffff 0%, var(--bg) 72%);
+      color: var(--text);
       font-family: Arial, sans-serif;
       overflow-x: hidden;
     }
@@ -22,65 +38,85 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 10;
-      box-sizing: border-box;
-      background: linear-gradient(to bottom, rgba(251,250,247,0.95), rgba(251,250,247,0));
+      z-index: 20;
+      background: linear-gradient(to bottom, rgba(251,250,247,0.96), rgba(251,250,247,0));
     }
 
     .name {
       font-family: Georgia, serif;
-      font-size: 1rem;
-      letter-spacing: 0.34em;
+      font-size: 0.95rem;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     nav a {
-      margin-left: 38px;
-      font-size: 0.72rem;
-      letter-spacing: 0.28em;
+      margin-left: 36px;
+      font-size: 0.68rem;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: #111;
+      color: var(--text);
       text-decoration: none;
+      opacity: 0.75;
+    }
+
+    nav a:hover {
+      opacity: 1;
     }
 
     .hero {
       min-height: 100vh;
-      padding: 110px 6vw 60px;
+      padding: 120px 6vw 60px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      box-sizing: border-box;
     }
 
     h1 {
-      margin: 0 0 20px;
+      margin: 0;
       font-family: Georgia, serif;
-      font-size: clamp(2.3rem, 4.5vw, 4.3rem);
       font-weight: 400;
+      line-height: 1.05;
       letter-spacing: 0.01em;
     }
 
+    h1 .line-one {
+      display: block;
+      font-size: clamp(2.8rem, 5.4vw, 5.2rem);
+    }
+
+    h1 .line-two {
+      display: block;
+      margin-top: 0.08em;
+      font-size: clamp(2.05rem, 4.3vw, 4.1rem);
+      font-style: italic;
+    }
+
     .keywords {
-      font-size: 0.68rem;
-      letter-spacing: 0.44em;
+      margin-top: 28px;
+      margin-bottom: 8px;
+      font-size: 0.66rem;
+      letter-spacing: 0.42em;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      color: #222;
     }
 
     .keywords span {
-      margin: 0 15px;
-      color: #777;
+      margin: 0 14px;
+      color: var(--muted);
     }
 
     .symbol {
       position: relative;
-      width: min(600px, 78vw);
+      width: min(560px, 76vw);
       aspect-ratio: 1 / 1;
+      margin-top: 6px;
     }
 
-    canvas, svg {
+    canvas,
+    svg {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -93,61 +129,76 @@
 
     .ring {
       fill: none;
-      stroke: rgba(0,0,0,0.16);
-      stroke-width: 0.8;
-      stroke-dasharray: 2 7;
+      stroke: var(--line);
+      stroke-width: 0.75;
+      stroke-dasharray: 1.5 7;
+    }
+
+    .inner-ring {
+      fill: none;
+      stroke: var(--faint);
+      stroke-width: 0.75;
+    }
+
+    .axis {
+      stroke: rgba(0,0,0,0.055);
+      stroke-width: 0.7;
     }
 
     .triad {
       fill: none;
-      stroke: rgba(0,0,0,0.14);
-      stroke-width: 0.9;
-      animation: triadBreath 8s ease-in-out infinite;
-      transform-origin: center;
+      stroke: rgba(0,0,0,0.18);
+      stroke-width: 0.85;
+      opacity: var(--triad-opacity, 0.15);
     }
 
-    @keyframes triadBreath {
-      0%, 100% { opacity: 0.20; }
-      45%, 60% { opacity: 0.55; }
-    }
-
-    .axis {
-      stroke: rgba(0,0,0,0.08);
-      stroke-width: 0.8;
-    }
-
-    .outer-point, .center-point {
+    .outer-point {
       fill: #111;
+      opacity: 0.75;
+    }
+
+    .center-point {
+      fill: #111;
+      opacity: 0.8;
     }
 
     .explore {
-      margin-top: 8px;
-      font-size: 0.68rem;
+      margin-top: 2px;
+      font-size: 0.65rem;
       letter-spacing: 0.42em;
       text-transform: uppercase;
+      color: #222;
+      opacity: 0.78;
     }
 
     .arrow {
-      margin-top: 12px;
-      font-size: 1.8rem;
-      animation: arrow 2s ease-in-out infinite;
+      margin-top: 10px;
+      font-size: 1.6rem;
+      animation: arrow 2.4s ease-in-out infinite;
     }
 
     @keyframes arrow {
-      0%, 100% { transform: translateY(0); opacity: 0.4; }
-      50% { transform: translateY(8px); opacity: 1; }
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.35;
+      }
+      50% {
+        transform: translateY(8px);
+        opacity: 0.9;
+      }
     }
 
     section {
       max-width: 900px;
       margin: 0 auto;
-      padding: 80px 8vw;
+      padding: 90px 8vw;
     }
 
     h2 {
       font-family: Georgia, serif;
-      font-size: 2.4rem;
+      font-size: 2.35rem;
       font-weight: 400;
+      margin-bottom: 22px;
     }
 
     p {
@@ -161,11 +212,26 @@
         position: absolute;
         flex-direction: column;
         gap: 18px;
+        padding-top: 26px;
       }
 
       nav a {
-        margin: 0 10px;
-        font-size: 0.62rem;
+        margin: 0 9px;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+      }
+
+      .hero {
+        padding-top: 160px;
+      }
+
+      .keywords {
+        letter-spacing: 0.22em;
+        line-height: 2;
+      }
+
+      .keywords span {
+        margin: 0 8px;
       }
     }
   </style>
@@ -183,7 +249,10 @@
   </header>
 
   <main class="hero">
-    <h1>Bridging experience and science.</h1>
+    <h1>
+      <span class="line-one">Bridging</span>
+      <span class="line-two">experience and science</span>
+    </h1>
 
     <div class="keywords">
       Consciousness <span>·</span> Meaning <span>·</span> Agency
@@ -194,6 +263,7 @@
 
       <svg viewBox="-220 -220 440 440">
         <circle class="ring" r="165"></circle>
+        <circle class="inner-ring" r="62"></circle>
 
         <line class="axis" x1="0" y1="0" x2="0" y2="-165"></line>
         <line class="axis" x1="0" y1="0" x2="156.9" y2="-51"></line>
@@ -201,18 +271,20 @@
         <line class="axis" x1="0" y1="0" x2="-97" y2="133.5"></line>
         <line class="axis" x1="0" y1="0" x2="-156.9" y2="-51"></line>
 
-        <polygon class="triad" points="0,-78 67,39 -67,39"></polygon>
-        <circle class="triad" cx="0" cy="-78" r="22"></circle>
-        <circle class="triad" cx="67" cy="39" r="22"></circle>
-        <circle class="triad" cx="-67" cy="39" r="22"></circle>
+        <g id="triadGroup">
+          <polygon class="triad" points="0,-78 67,39 -67,39"></polygon>
+          <circle class="triad" cx="0" cy="-78" r="22"></circle>
+          <circle class="triad" cx="67" cy="39" r="22"></circle>
+          <circle class="triad" cx="-67" cy="39" r="22"></circle>
+        </g>
 
-        <circle class="outer-point" cx="0" cy="-165" r="5"></circle>
-        <circle class="outer-point" cx="156.9" cy="-51" r="5"></circle>
-        <circle class="outer-point" cx="97" cy="133.5" r="5"></circle>
-        <circle class="outer-point" cx="-97" cy="133.5" r="5"></circle>
-        <circle class="outer-point" cx="-156.9" cy="-51" r="5"></circle>
+        <circle class="outer-point" cx="0" cy="-165" r="2.7"></circle>
+        <circle class="outer-point" cx="156.9" cy="-51" r="2.7"></circle>
+        <circle class="outer-point" cx="97" cy="133.5" r="2.7"></circle>
+        <circle class="outer-point" cx="-97" cy="133.5" r="2.7"></circle>
+        <circle class="outer-point" cx="-156.9" cy="-51" r="2.7"></circle>
 
-        <circle class="center-point" cx="0" cy="0" r="6"></circle>
+        <circle class="center-point" cx="0" cy="0" r="4.2"></circle>
       </svg>
     </div>
 
@@ -222,12 +294,12 @@
 
   <section id="about">
     <h2>About</h2>
-    <p>This section will introduce the research identity.</p>
+    <p>This section will introduce the research identity: bridging formal scientific models with the structure of lived experience.</p>
   </section>
 
   <section id="research">
     <h2>Research</h2>
-    <p>Current research includes GENESIS, agency, experimental consciousness, and motor dynamics.</p>
+    <p>Current research includes GENESIS, agency and free choice, experimental consciousness studies, and motor dynamics.</p>
   </section>
 
   <section id="publications">
@@ -243,30 +315,27 @@
   <script>
     const canvas = document.getElementById("particleCanvas");
     const ctx = canvas.getContext("2d");
+    const triadGroup = document.getElementById("triadGroup");
 
-    let W, H, CX, CY, scale;
+    let cssW, cssH, CX, CY, scale;
     const particles = [];
-    const N = 1800;
-
-    const attractors = [
-      { x: 0, y: -150 },
-      { x: 142.7, y: -46.4 },
-      { x: 88.2, y: 121.4 },
-      { x: -88.2, y: 121.4 },
-      { x: -142.7, y: -46.4 }
-    ];
+    const N = 1250;
 
     function resize() {
       const rect = canvas.getBoundingClientRect();
-      W = canvas.width = rect.width * devicePixelRatio;
-      H = canvas.height = rect.height * devicePixelRatio;
-      canvas.style.width = rect.width + "px";
-      canvas.style.height = rect.height + "px";
-      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+      const dpr = window.devicePixelRatio || 1;
 
-      CX = rect.width / 2;
-      CY = rect.height / 2;
-      scale = rect.width / 440;
+      cssW = rect.width;
+      cssH = rect.height;
+
+      canvas.width = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      CX = cssW / 2;
+      CY = cssH / 2;
+      scale = cssW / 440;
     }
 
     function gaussian() {
@@ -280,27 +349,23 @@
       particles.length = 0;
 
       for (let i = 0; i < N; i++) {
-        const a = Math.random() * Math.PI * 2;
-        const startR = Math.pow(Math.random(), 1.8) * 40;
-        const startX = Math.cos(a) * startR + gaussian() * 5;
-        const startY = Math.sin(a) * startR + gaussian() * 5;
+        const angle = Math.random() * Math.PI * 2;
 
-        const group = i % 5;
-        const target = attractors[group];
+        const centerRadius = Math.pow(Math.random(), 1.9) * 36;
+        const centerAngle = Math.random() * Math.PI * 2;
 
-        const targetX = target.x + gaussian() * 18;
-        const targetY = target.y + gaussian() * 18;
+        const outerRadius = 145 + gaussian() * 9;
 
         particles.push({
-          sx: startX,
-          sy: startY,
-          tx: targetX,
-          ty: targetY,
-          size: Math.random() * 0.9 + 0.35,
-          alpha: Math.random() * 0.45 + 0.18,
+          centerX: Math.cos(centerAngle) * centerRadius + gaussian() * 2,
+          centerY: Math.sin(centerAngle) * centerRadius + gaussian() * 2,
+          angle: angle,
+          outerRadius: outerRadius,
+          size: Math.random() * 0.55 + 0.25,
+          alpha: Math.random() * 0.23 + 0.08,
           phase: Math.random() * Math.PI * 2,
-          wobble: Math.random() * 5 + 1,
-          speed: Math.random() * 0.4 + 0.8
+          delay: Math.random() * 0.18,
+          drift: (Math.random() - 0.5) * 0.06
         });
       }
     }
@@ -310,31 +375,29 @@
     }
 
     function animate(time) {
-      ctx.clearRect(0, 0, W, H);
+      ctx.clearRect(0, 0, cssW, cssH);
 
-      const global = (Math.sin(time * 0.00038) + 1) / 2;
-      const breath = smoothstep(global);
+      const raw = (Math.sin(time * 0.00026) + 1) / 2;
+      const breath = smoothstep(raw);
+
+      const triadOpacity = 0.08 + breath * 0.42;
+      triadGroup.style.setProperty("--triad-opacity", triadOpacity);
 
       for (const p of particles) {
-        const local = Math.min(1, Math.max(0, breath + 0.16 * Math.sin(time * 0.0007 * p.speed + p.phase)));
+        let local = breath + 0.045 * Math.sin(time * 0.0005 + p.phase) - p.delay * 0.18;
+        local = Math.min(1, Math.max(0, local));
         const e = smoothstep(local);
 
-        const x0 = p.sx;
-        const y0 = p.sy;
-        const x1 = p.tx;
-        const y1 = p.ty;
+        const outerAngle = p.angle + p.drift * Math.sin(time * 0.00035 + p.phase);
+        const outerX = Math.cos(outerAngle) * p.outerRadius;
+        const outerY = Math.sin(outerAngle) * p.outerRadius;
 
-        const wobbleX = Math.sin(time * 0.001 + p.phase) * p.wobble;
-        const wobbleY = Math.cos(time * 0.0012 + p.phase) * p.wobble;
-
-        const x = CX + (x0 * (1 - e) + x1 * e + wobbleX) * scale;
-        const y = CY + (y0 * (1 - e) + y1 * e + wobbleY) * scale;
-
-        const alphaBoost = 0.75 + 0.25 * e;
+        const x = CX + (p.centerX * (1 - e) + outerX * e) * scale;
+        const y = CY + (p.centerY * (1 - e) + outerY * e) * scale;
 
         ctx.beginPath();
         ctx.arc(x, y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 0, 0, ${p.alpha * alphaBoost})`;
+        ctx.fillStyle = `rgba(0, 0, 0, ${p.alpha})`;
         ctx.fill();
       }
 
