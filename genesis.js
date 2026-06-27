@@ -136,13 +136,13 @@ function drawGeometry() {
 
   for (const p of poles) {
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 14, 0, Math.PI * 2);
     ctx.strokeStyle ="rgba(0,82,88,1)";
     ctx.lineWidth = 1.2;
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 8.5, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
     ctx.fillStyle = "rgba(0,82,88,1)";
     ctx.fill();
   }
