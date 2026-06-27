@@ -4,201 +4,337 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Avishag D. Pelosi</title>
+
   <style>
+    :root {
+      --bg: #fbfaf7;
+      --text: #111111;
+      --soft: #777777;
+      --line: rgba(0, 0, 0, 0.18);
+      --faint: rgba(0, 0, 0, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      color: #1f2933;
-      background: #f8f7f3;
-      line-height: 1.6;
+      background: radial-gradient(circle at center, #ffffff 0%, var(--bg) 68%);
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      overflow-x: hidden;
     }
 
     header {
-      padding: 80px 10% 60px;
-      text-align: center;
-      background: linear-gradient(180deg, #ffffff, #f8f7f3);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 34px 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      font-size: 0.78rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      background: linear-gradient(to bottom, rgba(251,250,247,0.92), rgba(251,250,247,0));
     }
 
-    h1 {
-      font-size: 3.2rem;
-      margin: 0;
-      letter-spacing: 0.04em;
-      font-weight: 400;
-    }
-
-    .subtitle {
-      font-size: 1.35rem;
-      margin-top: 18px;
-      color: #4b5563;
-    }
-
-    .tagline {
-      max-width: 760px;
-      margin: 32px auto 0;
-      font-size: 1.1rem;
-      color: #374151;
-    }
-
-    nav {
-      margin-top: 40px;
+    .name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1rem;
+      letter-spacing: 0.34em;
     }
 
     nav a {
-      margin: 0 14px;
+      color: var(--text);
       text-decoration: none;
-      color: #1f2933;
-      border-bottom: 1px solid #9ca3af;
-      padding-bottom: 3px;
+      margin-left: 36px;
+      opacity: 0.82;
+    }
+
+    nav a:hover {
+      opacity: 1;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 120px 6vw 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+    }
+
+    h1 span {
+      display: block;
+      font-style: italic;
+      font-size: 0.72em;
+      letter-spacing: 0.03em;
+      margin-top: 0.14em;
+    }
+
+    .keywords {
+      margin-top: 34px;
+      font-size: 0.76rem;
+      letter-spacing: 0.46em;
+      text-transform: uppercase;
+      color: #222;
+    }
+
+    .keywords span {
+      margin: 0 16px;
+      color: #777;
+    }
+
+    .symbol-wrap {
+      margin-top: 34px;
+      width: min(520px, 78vw);
+      aspect-ratio: 1 / 1;
+      position: relative;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .outer-ring {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 0.8;
+      stroke-dasharray: 2 6;
+    }
+
+    .inner-ring {
+      fill: none;
+      stroke: var(--faint);
+      stroke-width: 0.8;
+    }
+
+    .triad {
+      fill: none;
+      stroke: rgba(0,0,0,0.18);
+      stroke-width: 0.9;
+    }
+
+    .axis {
+      stroke: rgba(0,0,0,0.12);
+      stroke-width: 0.8;
+    }
+
+    .center {
+      fill: #111;
+    }
+
+    .outer-point {
+      fill: #111;
+    }
+
+    .moving-point {
+      fill: #111;
+      opacity: 0.72;
+      animation: moveOut 7s ease-in-out infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .moving-point.p2 { animation-delay: -1.4s; }
+    .moving-point.p3 { animation-delay: -2.8s; }
+    .moving-point.p4 { animation-delay: -4.2s; }
+    .moving-point.p5 { animation-delay: -5.6s; }
+
+    @keyframes moveOut {
+      0%, 100% {
+        transform: translate(0, 0) scale(0.75);
+        opacity: 0.18;
+      }
+      48%, 58% {
+        transform: translate(var(--dx), var(--dy)) scale(1);
+        opacity: 0.9;
+      }
+    }
+
+    .pulse {
+      animation: pulse 5s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.12; transform: scale(0.96); }
+      50% { opacity: 0.34; transform: scale(1.03); }
+    }
+
+    .explore {
+      margin-top: 16px;
+      font-size: 0.72rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: #333;
+    }
+
+    .arrow {
+      margin-top: 14px;
+      font-size: 2rem;
+      line-height: 1;
+      color: #111;
+      animation: arrow 2s ease-in-out infinite;
+    }
+
+    @keyframes arrow {
+      0%, 100% { transform: translateY(0); opacity: 0.45; }
+      50% { transform: translateY(8px); opacity: 1; }
     }
 
     section {
-      max-width: 980px;
+      max-width: 920px;
       margin: 0 auto;
-      padding: 70px 10%;
+      padding: 80px 8vw;
     }
 
     h2 {
-      font-size: 2rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.5rem;
       font-weight: 400;
-      margin-bottom: 24px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+    p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333;
     }
 
-    .card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-    }
+    @media (max-width: 760px) {
+      header {
+        position: absolute;
+        flex-direction: column;
+        gap: 18px;
+        padding-top: 26px;
+      }
 
-    .card h3 {
-      margin-top: 0;
-      font-size: 1.25rem;
-      font-weight: 500;
-    }
+      nav a {
+        margin: 0 10px;
+        letter-spacing: 0.18em;
+        font-size: 0.68rem;
+      }
 
-    .muted {
-      color: #6b7280;
-    }
+      .hero {
+        padding-top: 150px;
+      }
 
-    footer {
-      text-align: center;
-      padding: 50px 10%;
-      color: #6b7280;
-      font-size: 0.95rem;
-    }
-
-    .divider {
-      width: 80px;
-      height: 1px;
-      background: #9ca3af;
-      margin: 48px auto;
+      .keywords {
+        letter-spacing: 0.24em;
+        line-height: 2;
+      }
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>Avishag D. Pelosi</h1>
-    <div class="subtitle">Research in Consciousness, Agency & Generative Systems</div>
-
-    <p class="tagline">
-      I investigate how consciousness, meaning, and agency may be understood through
-      the integration of formal modeling, empirical neuroscience, phenomenology,
-      and human transformation.
-    </p>
-
+    <div class="name">Avishag D. Pelosi</div>
     <nav>
-      <a href="#vision">Vision</a>
+      <a href="#about">About</a>
       <a href="#research">Research</a>
       <a href="#publications">Publications</a>
-      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section id="vision">
-    <h2>Research Vision</h2>
-    <p>
-      My work asks how conscious experience becomes structured, how meaning becomes
-      intrinsic to experience, and how agency arises within a field of possibilities.
-      I approach these questions through formal systems thinking, neuroscience,
-      contemplative and phenomenological inquiry, and the study of human transformation.
-    </p>
-  </section>
+  <main class="hero">
+    <h1>
+      Bridging
+      <span>experience and science.</span>
+    </h1>
 
-  <section id="research">
-    <h2>Current Research</h2>
-
-    <div class="grid">
-      <div class="card">
-        <h3>GENESIS</h3>
-        <p class="muted">A generative framework for consciousness</p>
-        <p>
-          A formal framework exploring structure, process, and meaning as inseparable
-          aspects of conscious organization.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Agency & Free Choice</h3>
-        <p class="muted">Research program in development</p>
-        <p>
-          Investigating how meaningful transformation, directionality, and agency
-          may arise within complex conscious systems.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Experimental Consciousness</h3>
-        <p class="muted">EEG, physiology, and neuroadaptive systems</p>
-        <p>
-          Developing empirical approaches to study agency, regulation, and embodied
-          dynamics using EEG and physiological measurement.
-        </p>
-      </div>
+    <div class="keywords">
+      Consciousness <span>•</span> Meaning <span>•</span> Agency
     </div>
-  </section>
 
-  <section id="publications">
-    <h2>Publications & Working Papers</h2>
-    <p>
-      Selected publications and working papers will appear here soon.
-    </p>
-    <p class="muted">
-      Current manuscript: <em>GENESIS: A Generative Framework for Consciousness</em>
-      — in preparation.
-    </p>
-  </section>
+    <div class="symbol-wrap" aria-label="Generative symbol">
+      <svg viewBox="-220 -220 440 440" role="img">
+        <!-- rings -->
+        <circle class="outer-ring" r="170"></circle>
+        <circle class="inner-ring pulse" r="95"></circle>
+        <circle class="inner-ring" r="58"></circle>
+
+        <!-- subtle axes to five outer points -->
+        <line class="axis" x1="0" y1="0" x2="0" y2="-170"></line>
+        <line class="axis" x1="0" y1="0" x2="161.7" y2="-52.5"></line>
+        <line class="axis" x1="0" y1="0" x2="100" y2="137.5"></line>
+        <line class="axis" x1="0" y1="0" x2="-100" y2="137.5"></line>
+        <line class="axis" x1="0" y1="0" x2="-161.7" y2="-52.5"></line>
+
+        <!-- triad -->
+        <polygon class="triad" points="0,-85 73,42 -73,42"></polygon>
+        <circle class="inner-ring" cx="0" cy="-85" r="24"></circle>
+        <circle class="inner-ring" cx="73" cy="42" r="24"></circle>
+        <circle class="inner-ring" cx="-73" cy="42" r="24"></circle>
+
+        <!-- central point -->
+        <circle class="center" cx="0" cy="0" r="7"></circle>
+
+        <!-- outer five points -->
+        <circle class="outer-point" cx="0" cy="-170" r="5"></circle>
+        <circle class="outer-point" cx="161.7" cy="-52.5" r="5"></circle>
+        <circle class="outer-point" cx="100" cy="137.5" r="5"></circle>
+        <circle class="outer-point" cx="-100" cy="137.5" r="5"></circle>
+        <circle class="outer-point" cx="-161.7" cy="-52.5" r="5"></circle>
+
+        <!-- moving inner points outward toward five processes -->
+        <circle class="moving-point p1" style="--dx:0px; --dy:-142px;" cx="0" cy="-28" r="3.4"></circle>
+        <circle class="moving-point p2" style="--dx:135px; --dy:-44px;" cx="26.7" cy="-8.5" r="3.4"></circle>
+        <circle class="moving-point p3" style="--dx:83px; --dy:114px;" cx="17" cy="23.5" r="3.4"></circle>
+        <circle class="moving-point p4" style="--dx:-83px; --dy:114px;" cx="-17" cy="23.5" r="3.4"></circle>
+        <circle class="moving-point p5" style="--dx:-135px; --dy:-44px;" cx="-26.7" cy="-8.5" r="3.4"></circle>
+      </svg>
+    </div>
+
+    <div class="explore">Explore</div>
+    <div class="arrow">↓</div>
+  </main>
 
   <section id="about">
     <h2>About</h2>
     <p>
-      I am a faculty member in Mechanical Engineering at Braude College of Engineering.
-      My background includes aerospace engineering, biomechanics, neuroscience-oriented
-      experimental work, psychotherapy, and contemplative practice. My current research
-      brings these perspectives together to investigate the foundations of consciousness,
-      meaning, agency, and transformation.
+      This section will introduce the research identity: bridging formal scientific
+      models and the structure of lived experience.
+    </p>
+  </section>
+
+  <section id="research">
+    <h2>Research</h2>
+    <p>
+      Current research includes the GENESIS framework, agency and free choice,
+      experimental consciousness studies, and earlier work on motor dynamics.
+    </p>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <p>
+      Publications and working papers will be added here.
     </p>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
     <p>
-      Email and academic profile links will be added here.
+      Contact information and academic profile links will be added here.
     </p>
   </section>
-
-  <div class="divider"></div>
-
-  <footer>
-    © 2026 Avishag D. Pelosi
-  </footer>
 </body>
 </html>
