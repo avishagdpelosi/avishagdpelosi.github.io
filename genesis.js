@@ -74,10 +74,20 @@ function initParticles() {
 function drawGlow(breath) {
   const glow = ctx.createRadialGradient(CX, CY, R * 0.03, CX, CY, R * 1.45);
 
-  glow.addColorStop(0, `rgba(226,170,70,${0.36 + 0.18 * breath})`);
-  glow.addColorStop(0.45, `rgba(47,111,115,${0.12 + 0.08 * breath})`);
-  glow.addColorStop(1, "rgba(255,255,255,0)");
+ glow.addColorStop(
+    0,
+    `rgba(226,170,70,0.10)`
+);
 
+glow.addColorStop(
+    0.30,
+    `rgba(0,95,105,0.05)`
+);
+
+glow.addColorStop(
+    1,
+    "rgba(255,255,255,0)"
+);
   ctx.beginPath();
   ctx.arc(CX, CY, R * 1.65, 0, Math.PI * 2);
   ctx.fillStyle = glow;
@@ -98,7 +108,7 @@ function drawParticles(time) {
 
     // one teal color: brighter inside, darker outside
     const t = Math.min(1, Math.max(0, rr / R));
-    const brightness = 1.55 - 0.65 * t;
+   const brightness = 0.95 - 0.15 * t;
 
     const r = Math.min(255, Math.round(teal[0] * brightness));
     const g = Math.min(255, Math.round(teal[1] * brightness));
@@ -158,19 +168,19 @@ function drawGeometry() {
   for (const t of tri) {
     ctx.beginPath();
     ctx.arc(t.x, t.y, R * 0.14, 0, Math.PI * 2);
-    ctx.strokeStyle = "rgba(18,63,67,0.58)";
+   ctx.fillStyle = "rgba(0,82,88,1)";
     ctx.lineWidth = 1.1;
     ctx.stroke();
 
     ctx.beginPath();
     ctx.arc(t.x, t.y, 5.4, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(170,112,38,0.98)";
+    ctx.fillStyle = "rgba(0,82,88,1)";
     ctx.fill();
   }
 
   ctx.beginPath();
   ctx.arc(CX, CY, 6, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(170,112,38,1)";
+ ctx.fillStyle = "rgba(0,82,88,1)";
   ctx.fill();
 
   ctx.restore();
