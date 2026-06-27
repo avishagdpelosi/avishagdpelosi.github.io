@@ -4,250 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Avishag D. Pelosi</title>
-
-  <style>
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background:
-        radial-gradient(circle at 72% 42%, rgba(224, 168, 72, 0.18), transparent 26%),
-        radial-gradient(circle at center, #ffffff 0%, #faf7ef 62%, #efebe1 100%);
-      color: #101414;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 38px 5vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 20;
-      background: linear-gradient(to bottom, rgba(250,247,239,0.96), rgba(250,247,239,0));
-    }
-
-    .name {
-      font-family: Georgia, serif;
-      font-size: 1.18rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    nav a {
-      margin-left: 42px;
-      font-size: 0.9rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #101414;
-      text-decoration: none;
-      opacity: 0.8;
-    }
-
-    nav a:hover {
-      color: #165f64;
-      opacity: 1;
-    }
-
-    .hero {
-      min-height: 100vh;
-      padding: 120px 6vw 35px;
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      align-items: center;
-      gap: 4vw;
-    }
-
-    .hero-text {
-      padding-left: 2vw;
-    }
-
-    h1 {
-      margin: 0;
-      font-family: Georgia, serif;
-      font-weight: 400;
-      line-height: 1.02;
-    }
-
-    h1 .line-one {
-      display: block;
-      font-size: clamp(3.6rem, 7vw, 7rem);
-    }
-
-    h1 .line-two {
-      display: block;
-      margin-top: 0.05em;
-      font-size: clamp(2.6rem, 5.4vw, 5.4rem);
-      font-style: italic;
-      color: #165f64;
-    }
-
-    .small-line {
-      width: 70px;
-      height: 1px;
-      background: #165f64;
-      margin: 42px 0 36px;
-      opacity: 0.8;
-    }
-
-    .keywords {
-      font-size: 1rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: #165f64;
-      font-weight: 500;
-      line-height: 2;
-    }
-
-    .keywords span {
-      margin: 0 14px;
-      color: #806b45;
-    }
-
-    .symbol-wrap {
-      position: relative;
-      width: min(760px, 52vw);
-      aspect-ratio: 1 / 1;
-      justify-self: center;
-    }
-
-    canvas, svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    svg { pointer-events: none; }
-
-    .structure-line {
-      fill: none;
-      stroke: #123f43;
-      stroke-width: 0.9;
-      stroke-opacity: 0.44;
-    }
-
-    .structure-faint {
-      fill: none;
-      stroke: #123f43;
-      stroke-width: 0.75;
-      stroke-opacity: 0.25;
-    }
-
-    .structure-point {
-      fill: #165f64;
-      opacity: 0.86;
-    }
-
-    .warm-point {
-      fill: #9c7a3a;
-      opacity: 0.82;
-    }
-
-    .explore {
-      position: absolute;
-      left: 50%;
-      bottom: 28px;
-      transform: translateX(-50%);
-      font-size: 0.72rem;
-      letter-spacing: 0.42em;
-      text-transform: uppercase;
-      color: #165f64;
-      opacity: 0.9;
-      text-align: center;
-    }
-
-    .arrow {
-      display: block;
-      margin-top: 8px;
-      font-size: 1.8rem;
-      animation: arrow 2.4s ease-in-out infinite;
-    }
-
-    @keyframes arrow {
-      0%, 100% { transform: translateY(0); opacity: 0.35; }
-      50% { transform: translateY(8px); opacity: 0.9; }
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.36);
-    }
-
-    .card {
-      padding: 48px 5vw;
-      border-right: 1px solid rgba(0,0,0,0.10);
-      min-height: 210px;
-    }
-
-    .card:last-child { border-right: none; }
-
-    .card h2 {
-      margin: 0 0 18px;
-      font-size: 1rem;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: #165f64;
-      font-weight: 500;
-    }
-
-    .card p {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #222;
-      max-width: 270px;
-    }
-
-    @media (max-width: 950px) {
-      header {
-        position: absolute;
-        flex-direction: column;
-        gap: 18px;
-      }
-
-      nav a {
-        margin: 0 10px;
-        font-size: 0.72rem;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding-top: 155px;
-      }
-
-      .hero-text {
-        padding-left: 0;
-      }
-
-      .small-line {
-        margin: 32px auto 28px;
-      }
-
-      .symbol-wrap {
-        width: min(720px, 92vw);
-        margin-top: -20px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        border-right: none;
-        border-bottom: 1px solid rgba(0,0,0,0.10);
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -264,187 +21,53 @@
   <main class="hero">
     <section class="hero-text">
       <h1>
-        <span class="line-one">Bridging</span>
-        <span class="line-two">experience and science</span>
+        <span>Bridging</span>
+        <em>experience and science</em>
       </h1>
 
-      <div class="small-line"></div>
+      <div class="line"></div>
 
       <div class="keywords">
-        Consciousness <span>·</span> Meaning <span>·</span> Agency
+        Consciousness <b>·</b> Meaning <b>·</b> Agency
       </div>
     </section>
 
     <section class="symbol-wrap">
-      <canvas id="particleCanvas"></canvas>
-
-      <svg viewBox="-220 -220 440 440">
-        <g id="structure" opacity="0">
-          <!-- five outer points -->
-          <circle class="structure-point" cx="0" cy="-165" r="3.4"></circle>
-          <circle class="structure-point" cx="156.9" cy="-51" r="3.4"></circle>
-          <circle class="structure-point" cx="97" cy="133.5" r="3.4"></circle>
-          <circle class="structure-point" cx="-97" cy="133.5" r="3.4"></circle>
-          <circle class="structure-point" cx="-156.9" cy="-51" r="3.4"></circle>
-
-          <!-- pentagon connecting five poles -->
-          <line class="structure-faint" x1="0" y1="-165" x2="156.9" y2="-51"></line>
-          <line class="structure-faint" x1="156.9" y1="-51" x2="97" y2="133.5"></line>
-          <line class="structure-faint" x1="97" y1="133.5" x2="-97" y2="133.5"></line>
-          <line class="structure-faint" x1="-97" y1="133.5" x2="-156.9" y2="-51"></line>
-          <line class="structure-faint" x1="-156.9" y1="-51" x2="0" y2="-165"></line>
-
-          <!-- lines from center to five poles -->
-          <line class="structure-faint" x1="0" y1="0" x2="0" y2="-165"></line>
-          <line class="structure-faint" x1="0" y1="0" x2="156.9" y2="-51"></line>
-          <line class="structure-faint" x1="0" y1="0" x2="97" y2="133.5"></line>
-          <line class="structure-faint" x1="0" y1="0" x2="-97" y2="133.5"></line>
-          <line class="structure-faint" x1="0" y1="0" x2="-156.9" y2="-51"></line>
-
-          <!-- original triad -->
-          <polygon class="structure-line" points="0,-78 67,39 -67,39"></polygon>
-          <circle class="structure-line" cx="0" cy="-78" r="22"></circle>
-          <circle class="structure-line" cx="67" cy="39" r="22"></circle>
-          <circle class="structure-line" cx="-67" cy="39" r="22"></circle>
-
-          <circle class="warm-point" cx="0" cy="0" r="3.6"></circle>
-        </g>
-      </svg>
+      <canvas id="genesisCanvas"></canvas>
     </section>
 
     <div class="explore">
       Explore
-      <span class="arrow">↓</span>
+      <span>↓</span>
     </div>
   </main>
 
   <section class="cards">
     <div class="card" id="about">
       <h2>About</h2>
-      <p>Bridging formal scientific models with the structure of lived experience.</p>
+      <p>Bridging formal models and lived experience.</p>
+      <div>→</div>
     </div>
 
     <div class="card" id="research">
       <h2>Research</h2>
-      <p>GENESIS, agency and free choice, experimental consciousness, and motor dynamics.</p>
+      <p>GENESIS, agency, consciousness, and motor dynamics.</p>
+      <div>→</div>
     </div>
 
     <div class="card" id="publications">
       <h2>Publications</h2>
-      <p>Academic papers and working manuscripts will be added here.</p>
+      <p>Papers and works in progress.</p>
+      <div>→</div>
     </div>
 
     <div class="card" id="contact">
       <h2>Contact</h2>
       <p>Get in touch and connect.</p>
+      <div>→</div>
     </div>
   </section>
 
-  <script>
-    const canvas = document.getElementById("particleCanvas");
-    const ctx = canvas.getContext("2d");
-    const structure = document.getElementById("structure");
-
-    let cssW, cssH, CX, CY, scale;
-    const particles = [];
-    const N = 2800;
-
-    function resize() {
-      const rect = canvas.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-
-      cssW = rect.width;
-      cssH = rect.height;
-
-      canvas.width = Math.round(cssW * dpr);
-      canvas.height = Math.round(cssH * dpr);
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      CX = cssW / 2;
-      CY = cssH / 2;
-      scale = cssW / 440;
-    }
-
-    function gaussian() {
-      let u = 0, v = 0;
-      while (u === 0) u = Math.random();
-      while (v === 0) v = Math.random();
-      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
-    }
-
-    function initParticles() {
-      particles.length = 0;
-
-      for (let i = 0; i < N; i++) {
-        const centerAngle = Math.random() * Math.PI * 2;
-        const centerRadius = Math.pow(Math.random(), 1.9) * 34;
-
-        const outerAngle = Math.random() * Math.PI * 2;
-        const outerRadius = 168 + gaussian() * 16;
-
-        particles.push({
-          cx: Math.cos(centerAngle) * centerRadius + gaussian() * 2,
-          cy: Math.sin(centerAngle) * centerRadius + gaussian() * 2,
-          ox: Math.cos(outerAngle) * outerRadius,
-          oy: Math.sin(outerAngle) * outerRadius,
-          size: Math.random() * 0.9 + 0.36,
-          alpha: Math.random() * 0.28 + 0.12,
-          phase: Math.random() * Math.PI * 2,
-          drift: Math.random() * 3.2 + 0.4
-        });
-      }
-    }
-
-    function smoothstep(t) {
-      return t * t * (3 - 2 * t);
-    }
-
-    function animate(time) {
-      ctx.clearRect(0, 0, cssW, cssH);
-
-      const raw = (Math.sin(time * 0.00023) + 1) / 2;
-      const breath = smoothstep(raw);
-
-      const visible = breath < 0.06 ? 0 : Math.pow(breath, 1.35) * 0.88;
-      if (structure) structure.setAttribute("opacity", visible);
-
-      for (const p of particles) {
-        let local = breath + 0.045 * Math.sin(time * 0.00055 + p.phase);
-        local = Math.min(1, Math.max(0, local));
-        const e = smoothstep(local);
-
-        const wobbleX = Math.sin(time * 0.00065 + p.phase) * p.drift;
-        const wobbleY = Math.cos(time * 0.0006 + p.phase) * p.drift;
-
-        const x = CX + (p.cx * (1 - e) + p.ox * e + wobbleX) * scale;
-        const y = CY + (p.cy * (1 - e) + p.oy * e + wobbleY) * scale;
-
-        const teal = [31, 93, 98];
-        const gold = [156, 122, 58];
-        const mix = e * 0.34;
-
-        const r = Math.round(teal[0] * (1 - mix) + gold[0] * mix);
-        const g = Math.round(teal[1] * (1 - mix) + gold[1] * mix);
-        const b = Math.round(teal[2] * (1 - mix) + gold[2] * mix);
-
-        ctx.beginPath();
-        ctx.arc(x, y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha})`;
-        ctx.fill();
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    resize();
-    initParticles();
-    animate(0);
-
-    window.addEventListener("resize", () => {
-      resize();
-      initParticles();
-    });
-  </script>
+  <script src="genesis.js"></script>
 </body>
 </html>
