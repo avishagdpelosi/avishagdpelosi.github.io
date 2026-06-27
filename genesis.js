@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 let W, H, CX, CY, R;
 const particles = [];
 
-const N = 18000;
+const N = 30000;
 
 const teal = [31, 93, 98];
 const gold = [156, 122, 58];
@@ -66,9 +66,8 @@ function initParticles() {
       angle,
       radius,
       baseRadius: radius,
-      size: Math.random() * 0.95 + 0.30,
-      alpha: Math.random() * 0.16 + 0.035,
-      alpha: Math.random() * 0.32 + 0.10,
+      size: Math.random() * 1.25 + 0.45,
+      alpha: Math.random() * 0.55 + 0.20,
       drift: Math.random() * 0.002 + 0.0003,
       noise: Math.random() * 8 + 2
     });
@@ -85,9 +84,11 @@ function mixColor(c1, c2, t) {
 
 function drawGlow(breath) {
   const glow = ctx.createRadialGradient(CX, CY, R * 0.05, CX, CY, R * 1.15);
-  glow.addColorStop(0, `rgba(220, 167, 72, ${0.10 + breath * 0.10})`);
-  glow.addColorStop(0.45, `rgba(47, 111, 115, ${0.035 + breath * 0.04})`);
+ 
   glow.addColorStop(1, "rgba(255,255,255,0)");
+  glow.addColorStop(0, `rgba(220, 167, 72, ${0.22 + breath * 0.18})`);
+  glow.addColorStop(0.45, `rgba(47, 111, 115, ${0.08 + breath * 0.08})`);
+ 
 
   ctx.beginPath();
   ctx.arc(CX, CY, R * 1.5, 0, Math.PI * 2);
@@ -108,7 +109,7 @@ function drawParticles(time, breath) {
     const y = CY + Math.sin(aa) * rr;
 
     const radial = Math.min(1, Math.abs(rr - R) / 80);
-    const colorMix = 0.20 + breath * 0.32 + (1 - radial) * 0.12;
+   const colorMix = 0.08 + breath * 0.22 + (1 - radial) * 0.08;
     const c = mixColor(teal, gold, Math.min(0.55, colorMix));
 
     ctx.beginPath();
@@ -128,7 +129,7 @@ function drawSoftLine(x1, y1, x2, y2, alpha, width = 0.9) {
 }
 
 function drawGeometry(time, breath) {
-  const opacity = 0.35 + 0.55 * breath;
+ const opacity = 0.65 + 0.35 * breath;
 
   ctx.save();
   ctx.globalAlpha = opacity;
