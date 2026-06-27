@@ -6,19 +6,14 @@
   <title>Avishag D. Pelosi</title>
 
   <style>
-    :root {
-      --bg: #fbfaf7;
-      --text: #111;
-    }
-
     * { box-sizing: border-box; }
 
     html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      background: radial-gradient(circle at center, #ffffff 0%, var(--bg) 72%);
-      color: var(--text);
+      background: radial-gradient(circle at center, #ffffff 0%, #fbfaf7 72%);
+      color: #111;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
     }
@@ -48,12 +43,10 @@
       font-size: 0.68rem;
       letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--text);
+      color: #111;
       text-decoration: none;
       opacity: 0.75;
     }
-
-    nav a:hover { opacity: 1; }
 
     .hero {
       min-height: 100vh;
@@ -70,7 +63,6 @@
       font-family: Georgia, serif;
       font-weight: 400;
       line-height: 1.05;
-      letter-spacing: 0.01em;
     }
 
     h1 .line-one {
@@ -91,7 +83,6 @@
       font-size: 0.66rem;
       letter-spacing: 0.42em;
       text-transform: uppercase;
-      color: #222;
     }
 
     .keywords span {
@@ -101,13 +92,12 @@
 
     .symbol {
       position: relative;
-      width: min(650px, 82vw);
+      width: min(680px, 84vw);
       aspect-ratio: 1 / 1;
       margin-top: 4px;
     }
 
-    canvas,
-    svg {
+    canvas, svg {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -119,7 +109,7 @@
     .structure-line {
       fill: none;
       stroke: #111;
-      stroke-width: 0.72;
+      stroke-width: 0.75;
       stroke-opacity: 0.36;
     }
 
@@ -127,12 +117,12 @@
       fill: none;
       stroke: #111;
       stroke-width: 0.7;
-      stroke-opacity: 0.23;
+      stroke-opacity: 0.22;
     }
 
     .structure-point {
       fill: #111;
-      opacity: 0.55;
+      opacity: 0.62;
     }
 
     .explore {
@@ -140,7 +130,6 @@
       font-size: 0.65rem;
       letter-spacing: 0.42em;
       text-transform: uppercase;
-      color: #222;
       opacity: 0.78;
     }
 
@@ -173,30 +162,6 @@
       line-height: 1.8;
       color: #333;
     }
-
-    @media (max-width: 760px) {
-      header {
-        position: absolute;
-        flex-direction: column;
-        gap: 18px;
-        padding-top: 26px;
-      }
-
-      nav a {
-        margin: 0 9px;
-        font-size: 0.6rem;
-        letter-spacing: 0.18em;
-      }
-
-      .hero { padding-top: 160px; }
-
-      .keywords {
-        letter-spacing: 0.22em;
-        line-height: 2;
-      }
-
-      .keywords span { margin: 0 8px; }
-    }
   </style>
 </head>
 
@@ -226,35 +191,35 @@
 
       <svg viewBox="-220 -220 440 440">
         <g id="structure" opacity="0">
-          <!-- outer circle, slightly beyond the cloud and five points -->
-          <circle class="structure-faint" cx="0" cy="0" r="188"></circle>
+          <!-- five points located on the outer particle cloud -->
+          <circle class="structure-point" cx="0" cy="-165" r="2.7"></circle>
+          <circle class="structure-point" cx="156.9" cy="-51" r="2.7"></circle>
+          <circle class="structure-point" cx="97" cy="133.5" r="2.7"></circle>
+          <circle class="structure-point" cx="-97" cy="133.5" r="2.7"></circle>
+          <circle class="structure-point" cx="-156.9" cy="-51" r="2.7"></circle>
 
           <!-- lines from center to five points -->
-          <line class="structure-faint" x1="0" y1="0" x2="0" y2="-170"></line>
-          <line class="structure-faint" x1="0" y1="0" x2="161.7" y2="-52.5"></line>
-          <line class="structure-faint" x1="0" y1="0" x2="100" y2="137.5"></line>
-          <line class="structure-faint" x1="0" y1="0" x2="-100" y2="137.5"></line>
-          <line class="structure-faint" x1="0" y1="0" x2="-161.7" y2="-52.5"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="0" y2="-165"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="156.9" y2="-51"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="97" y2="133.5"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="-97" y2="133.5"></line>
+          <line class="structure-faint" x1="0" y1="0" x2="-156.9" y2="-51"></line>
 
-          <!-- five points -->
-          <circle class="structure-point" cx="0" cy="-170" r="2.5"></circle>
-          <circle class="structure-point" cx="161.7" cy="-52.5" r="2.5"></circle>
-          <circle class="structure-point" cx="100" cy="137.5" r="2.5"></circle>
-          <circle class="structure-point" cx="-100" cy="137.5" r="2.5"></circle>
-          <circle class="structure-point" cx="-161.7" cy="-52.5" r="2.5"></circle>
+          <!-- inner circle containing the three circles -->
+          <circle class="structure-line" cx="0" cy="0" r="72"></circle>
 
-          <!-- three smaller overlapping circles, like your reference, no color/text -->
-          <circle class="structure-line" cx="0" cy="-45" r="54"></circle>
-          <circle class="structure-line" cx="-48" cy="38" r="54"></circle>
-          <circle class="structure-line" cx="48" cy="38" r="54"></circle>
+          <!-- three small overlapping circles -->
+          <circle class="structure-line" cx="0" cy="-26" r="34"></circle>
+          <circle class="structure-line" cx="-30" cy="22" r="34"></circle>
+          <circle class="structure-line" cx="30" cy="22" r="34"></circle>
 
-          <!-- internal triangle connecting the centers -->
-          <line class="structure-line" x1="0" y1="-45" x2="-48" y2="38"></line>
-          <line class="structure-line" x1="0" y1="-45" x2="48" y2="38"></line>
-          <line class="structure-line" x1="-48" y1="38" x2="48" y2="38"></line>
+          <!-- internal triangle -->
+          <line class="structure-line" x1="0" y1="-26" x2="-30" y2="22"></line>
+          <line class="structure-line" x1="0" y1="-26" x2="30" y2="22"></line>
+          <line class="structure-line" x1="-30" y1="22" x2="30" y2="22"></line>
 
           <!-- center point -->
-          <circle class="structure-point" cx="0" cy="0" r="3.2"></circle>
+          <circle class="structure-point" cx="0" cy="0" r="3"></circle>
         </g>
       </svg>
     </div>
@@ -290,7 +255,7 @@
 
     let cssW, cssH, CX, CY, scale;
     const particles = [];
-    const N = 2100;
+    const N = 2300;
 
     function resize() {
       const rect = canvas.getBoundingClientRect();
@@ -324,17 +289,17 @@
         const centerRadius = Math.pow(Math.random(), 1.9) * 34;
 
         const outerAngle = Math.random() * Math.PI * 2;
-        const outerRadius = 165 + gaussian() * 10;
+        const outerRadius = 165 + gaussian() * 11;
 
         particles.push({
           cx: Math.cos(centerAngle) * centerRadius + gaussian() * 2,
           cy: Math.sin(centerAngle) * centerRadius + gaussian() * 2,
           ox: Math.cos(outerAngle) * outerRadius,
           oy: Math.sin(outerAngle) * outerRadius,
-          size: Math.random() * 0.72 + 0.35,
-          alpha: Math.random() * 0.30 + 0.14,
+          size: Math.random() * 0.72 + 0.36,
+          alpha: Math.random() * 0.31 + 0.15,
           phase: Math.random() * Math.PI * 2,
-          drift: Math.random() * 2.6 + 0.4
+          drift: Math.random() * 2.4 + 0.4
         });
       }
     }
