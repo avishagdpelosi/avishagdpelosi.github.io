@@ -66,9 +66,9 @@ function initParticles() {
       angle,
       radius,
       baseRadius: radius,
-      size: Math.random() * 0.65 + 0.18,
+      size: Math.random() * 0.95 + 0.30,
       alpha: Math.random() * 0.16 + 0.035,
-      phase: Math.random() * Math.PI * 2,
+      alpha: Math.random() * 0.32 + 0.10,
       drift: Math.random() * 0.002 + 0.0003,
       noise: Math.random() * 8 + 2
     });
@@ -128,7 +128,7 @@ function drawSoftLine(x1, y1, x2, y2, alpha, width = 0.9) {
 }
 
 function drawGeometry(time, breath) {
-  const opacity = 0.15 + 0.38 * breath;
+  const opacity = 0.35 + 0.55 * breath;
 
   ctx.save();
   ctx.globalAlpha = opacity;
