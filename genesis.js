@@ -66,7 +66,8 @@ function initParticles() {
       alpha: emphasis < 0.84 ? Math.random() * 0.22 + 0.08 : Math.random() * 0.42 + 0.22,
       phase: Math.random() * Math.PI * 2,
       drift: Math.random() * 0.002 + 0.00025,
-      noise: Math.random() * 9 + 3
+      noise: Math.random() * 9 + 3,
+      pulseStrength: 0.035 + Math.random() * 0.045,
     });
   }
 }
@@ -95,20 +96,28 @@ glow.addColorStop(
 }
 
 function drawParticles(time) {
+  const breath = Math.sin(time * 0.0012); 
+  // positive = expansion, negative = contraction
+
   for (const p of particles) {
     const wobble =
       Math.sin(time * 0.00045 + p.phase) * p.noise +
       Math.cos(time * 0.00031 + p.phase * 0.7) * p.noise * 0.45;
 
-    const rr = p.baseRadius * (1 + 0.025 * Math.sin(time * 0.00023)) + wobble;
-    const aa = p.angle + Math.sin(time * p.drift + p.phase) * 0.10;
+    const pulse = 1 + breath * p.pulseStrength;
+
+    const rr = p.baseRadius * pulse + wobble;
+
+    const aa =
+      p.angle +
+      Math.sin(time * p.drift + p.phase) * 0.035; 
+      // smaller rotation, more breathing
 
     const x = CX + Math.cos(aa) * rr;
     const y = CY + Math.sin(aa) * rr;
 
-    // one teal color: brighter inside, darker outside
     const t = Math.min(1, Math.max(0, rr / R));
-   const brightness = 0.95 - 0.15 * t;
+    const brightness = 0.95 - 0.15 * t;
 
     const r = Math.min(255, Math.round(teal[0] * brightness));
     const g = Math.min(255, Math.round(teal[1] * brightness));
