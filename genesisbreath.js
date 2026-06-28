@@ -51,8 +51,12 @@ function initParticles() {
     particles.push({
       angle,
       baseRadius: radius,
-      size: Math.random() * 0.75 + 0.25,
-      alpha: Math.random() * 0.24 + 0.08,
+     size: Math.random() < 0.82
+  ? Math.random() * 0.65 + 0.18
+  : Math.random() * 2.2 + 0.7,
+      alpha: Math.random() < 0.82
+  ? Math.random() * 0.20 + 0.06
+  : Math.random() * 0.28 + 0.12,
       phase: Math.random() * Math.PI * 2,
       noise: Math.random() * 5 + 2
     });
@@ -93,7 +97,10 @@ const ringRadius = R * 0.98;
 if (p.group === "center") {
   targetRadius = centerRadius * (0.55 + Math.random() * 0.45);
 } else {
-  targetRadius = ringRadius + Math.sin(p.phase) * R * 0.08;
+targetRadius =
+  ringRadius +
+  Math.sin(p.phase) * R * 0.22 +
+  randn() * R * 0.14;
 }
 
 const rr =
