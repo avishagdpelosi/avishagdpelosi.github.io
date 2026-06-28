@@ -225,3 +225,45 @@ h1 em {
     border-bottom: 1px solid rgba(0,0,0,0.10);
   }
 }
+.about-section {
+  padding: 140px 14%;
+  background: #f7f4ee;
+  border-top: 1px solid #d8d1c4;
+}
+
+.about-title {
+  max-width: 900px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+.about-title h2 {
+  font-size: 48px;
+  font-weight: 300;
+  margin-bottom: 30px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0b6f78;
+}
+
+.about-quote {
+  font-size: 30px;
+  font-style: italic;
+  color: #0b6f78;
+  line-height: 1.5;
+}
+
+.about-content {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.about-text {
+  font-size: 20px;
+  line-height: 2;
+  color: #102f35;
+}
+
+.about-text p {
+  margin-bottom: 32px;
+}
