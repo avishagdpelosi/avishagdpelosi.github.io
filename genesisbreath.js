@@ -46,7 +46,7 @@ function initParticles() {
   for (let i = 0; i < N; i++) {
     const angle = Math.random() * Math.PI * 2;
 
-    const radius = Math.abs(randn()) * R * 0.16;
+   const radius = Math.abs(randn()) * R * 0.14;
 
     particles.push({
       angle,
@@ -78,7 +78,7 @@ function drawGlow(structureAlpha) {
 }
 
 function drawParticles(time, pulse) {
-  const expansion = 0.12 + pulse * 1.05;
+ const expansion = 0.08 + pulse * 6.2;
   const rotation = time * 0.00028 + pulse * 1.2;
 
   for (const p of particles) {
