@@ -78,15 +78,28 @@ function drawGlow(structureAlpha) {
 }
 
 function drawParticles(time, pulse) {
- const expansion = 0.08 + pulse * 6.2;
-  const rotation = time * 0.00028 + pulse * 1.2;
+const rotation = time * 0.00028 + pulse * 1.2;
 
+const centerRadius = R * 0.12;
+const ringRadius = R * 0.98;
+  
   for (const p of particles) {
     const wobble =
       Math.sin(time * 0.0007 + p.phase) * p.noise +
       Math.cos(time * 0.00041 + p.phase * 0.7) * p.noise * 0.35;
 
-    const rr = p.baseRadius * expansion + wobble;
+   let targetRadius;
+
+if (p.group === "center") {
+  targetRadius = centerRadius * (0.55 + Math.random() * 0.45);
+} else {
+  targetRadius = ringRadius + Math.sin(p.phase) * R * 0.08;
+}
+
+const rr =
+  (1 - pulse) * p.baseRadius +
+  pulse * targetRadius +
+  wobble;
     const aa = p.angle + rotation + Math.sin(time * 0.0004 + p.phase) * 0.035;
 
     const x = CX + Math.cos(aa) * rr;
