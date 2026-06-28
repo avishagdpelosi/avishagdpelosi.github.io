@@ -139,9 +139,9 @@ function drawLine(x1, y1, x2, y2, alpha, width = 1) {
   ctx.stroke();
 }
 
-function drawGeometry() {
+function drawGeometry(breath) {
   ctx.save();
-  ctx.globalAlpha = 0.98;
+ctx.globalAlpha = 0.08 + breath * 0.92;
 
   for (const p of poles) {
     ctx.beginPath();
@@ -202,7 +202,7 @@ function animate(time) {
 
   drawGlow(breath);
   drawParticles(time);
-  drawGeometry();
+ drawGeometry(breath);
 
   requestAnimationFrame(animate);
 }
