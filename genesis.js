@@ -5,7 +5,10 @@ let W, H, CX, CY, R;
 const particles = [];
 const poles = [];
 
-const N = 42000;
+const N =
+  window.innerWidth <= 600 ? 8000 :
+  window.innerWidth <= 950 ? 14000 :
+  22000;
 const teal = [0, 95, 105];
 
 function resize() {
