@@ -376,3 +376,12 @@ nav a {
   line-height: 1.65;
   max-width: 330px;
 }
+.quote-author {
+  margin: 20px 0 0;
+  font-size: 1rem;
+  font-style: normal;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #102f35;
+  opacity: 0.72;
+}
