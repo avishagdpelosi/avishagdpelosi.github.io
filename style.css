@@ -330,4 +330,49 @@ h1 em {
     font-size: 1.05rem;
     line-height: 1.75;
   }
+.name {
+  font-size: 1.15rem;
+}
+
+nav a {
+  font-size: 0.82rem;
+}
+
+.keywords {
+  font-size: 1rem;
+}
+
+.about-text {
+  font-size: 1.08rem;
+}
+
+
+}
+/* Larger, more readable typography */
+
+.name {
+  font-size: 1.35rem;
+}
+
+nav a {
+  font-size: 1rem;
+}
+
+.keywords {
+  font-size: 1.1rem;
+}
+
+.about-text {
+  font-size: clamp(1.15rem, 1.5vw, 1.3rem);
+  line-height: 1.8;
+}
+
+.card h2 {
+  font-size: 1.15rem;
+}
+
+.card p {
+  font-size: 1.12rem;
+  line-height: 1.65;
+  max-width: 330px;
 }
