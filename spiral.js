@@ -62,7 +62,7 @@ const colors = [
 /*
   Coherent inward-outward movement of the entire spiral.
 */
-const BREATH_STRENGTH = 0.07;
+const BREATH_STRENGTH = 0.09;
 const BREATH_SPEED = 0.0012;
 
 
