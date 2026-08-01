@@ -36,9 +36,6 @@ const INNER_SPREAD = 13;
   Strength of the outward travelling pulse.
   Try values between 0.025 and 0.06.
 */
-const PULSE_STRENGTH = 0.14;
-const PULSE_WIDTH = 0.075;
-const PULSE_SPEED = 0.00007;
 
 /*
   Controls the slow rotation of the whole spiral.
@@ -262,14 +259,19 @@ const globalBreath =
   Math.sin(time * BREATH_SPEED) *
     BREATH_STRENGTH *
     motionScale;
-
+/*
+  Ranges from 0 to 1 and remains synchronized
+  with the global inward-outward movement.
+*/
+const globalSwell =
+  (
+    Math.sin(time * BREATH_SPEED) + 1
+  ) / 2;
   /*
     Position of the pulse as it travels from the
     centre toward the outer edge.
   */
-  const pulsePosition =
-    (time * PULSE_SPEED * motionScale) % 1;
-
+ 
   for (const particle of particles) {
     const q =
       (
@@ -310,37 +312,7 @@ const globalBreath =
       Distance between the particle and the travelling
       pulse front.
     */
-    let pulseDistance =
-      Math.abs(progress - pulsePosition);
-
-    pulseDistance =
-      Math.min(
-        pulseDistance,
-        1 - pulseDistance
-      );
-
-    /*
-      A smooth and concentrated pulse.
-    */
-    const growthPulse = Math.exp(
-      -0.5 *
-      Math.pow(
-        pulseDistance / PULSE_WIDTH,
-        2
-      )
-    );
-
-    /*
-      The spiral expands locally as the pulse passes.
-    */
-    const pulsedRadius =
-      baseRadius *
-      (
-        1 +
-        growthPulse *
-          PULSE_STRENGTH *
-          motionScale
-      );
+   
 
     const radialWobble =
       Math.sin(
@@ -350,8 +322,8 @@ const globalBreath =
       (2 + progress * 4.5) *
       motionScale;
 
-  const radius =
-  pulsedRadius * globalBreath +
+ const radius =
+  baseRadius * globalBreath +
   particle.radialJitter * spreading +
   radialWobble;
 
@@ -400,9 +372,9 @@ const globalBreath =
     /*
       The pulse creates a visible wave of luminosity.
     */
-    const pulseBrightness =
-  0.78 +
-  0.50 * growthPulse;
+   const pulseBrightness =
+  0.65 +
+  0.55 * globalSwell;
 
    const alpha = clamp(
   particle.alpha *
@@ -419,10 +391,10 @@ const globalBreath =
     /*
       Dots swell slightly as the pulse passes.
     */
-    const size =
-      particle.size *
-      (0.65 + progress * 0.5) *
-      (1 + growthPulse * 0.3);
+   const size =
+  particle.size *
+  (0.65 + progress * 0.5) *
+  (0.82 + globalSwell * 0.5);
 
     ctx.fillStyle =
       colors[particle.color];
