@@ -89,15 +89,9 @@ h1 em {
   font-style: italic;
 }
 
-.line {
-  width: 72px;
-  height: 1px;
-  background: #165f64;
-  margin: 42px 0 36px;
-  opacity: 0.85;
-}
 
 .keywords {
+  margin-top: 48px;
   font-size: 1.2rem;
   letter-spacing: 0.27em;
   text-transform: uppercase;
@@ -500,10 +494,7 @@ h1 em {
     padding-top: 155px;
   }
 
-  .line {
-    margin: 32px auto 28px;
-  }
-
+ 
   .symbol-wrap {
     width: min(760px, 94vw);
     margin-top: -16px;
