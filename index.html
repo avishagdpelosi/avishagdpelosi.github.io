@@ -25,8 +25,7 @@
         <em>experience and science</em>
       </h1>
 
-      <div class="line"></div>
-
+     
       <div class="keywords">
         Consciousness <b>·</b> Meaning <b>·</b> Agency
       </div>
@@ -357,6 +356,25 @@
   </div>
 </section>
 
-  <script src="spiral.js"></script>
+ <script src="spiral.js"></script>
+
+<script>
+  const pageHeader = document.querySelector("header");
+
+  function updateHeader() {
+    pageHeader.classList.toggle(
+      "scrolled",
+      window.scrollY > 40
+    );
+  }
+
+  updateHeader();
+
+  window.addEventListener(
+    "scroll",
+    updateHeader,
+    { passive: true }
+  );
+</script>
 </body>
 </html>
