@@ -40,7 +40,7 @@ const INNER_SPREAD = 13;
 /*
   Controls the slow rotation of the whole spiral.
 */
-const ROTATION_SPEED = 0.000009;
+const ROTATION_SPEED = 0.000008;
 
 const reducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
@@ -60,7 +60,7 @@ const colors = [
   Coherent inward-outward movement of the entire spiral.
 */
 const BREATH_STRENGTH = 0.16;
-const BREATH_SPEED = 0.001;
+const BREATH_SPEED = 0.0012;
 
 
 function clamp(value, minimum, maximum) {
