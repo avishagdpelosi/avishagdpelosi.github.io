@@ -268,10 +268,18 @@ const pulsedTime = time;
 const breathWave =
   Math.sin(time * BREATH_SPEED);
 
+  const isMobile =
+  W <= 800;
+
+const effectiveBreathStrength =
+  isMobile
+    ? 0.07
+    : BREATH_STRENGTH;
+  
 const globalBreath =
   1 +
   breathWave *
-    BREATH_STRENGTH *
+    effectiveBreathStrength *
     motionScale;
 
 const globalSwell =
@@ -355,7 +363,7 @@ const naturalRadius =
 */
 const proportionalMovement =
   naturalRadius *
-  BREATH_STRENGTH *
+  effectiveBreathStrength *
   motionScale;
 
 /*
@@ -364,7 +372,7 @@ const proportionalMovement =
 */
 const innerMovement =
   Math.min(W, H) *
-  0.018 *
+  (isMobile ? 0.006 : 0.018) *
   (1 - progress) *
   motionScale;
 
@@ -462,11 +470,17 @@ const pulseBrightness = 1;
       Dots swell slightly as the pulse passes.
     */
   
-    const size =
+    const swellScale =
+  isMobile
+    ? 0.96 + globalSwell * 0.08
+    : 0.82 + globalSwell * 0.5;
+
+const size =
   particle.size *
   (0.65 + progress * 0.5) *
-  (0.82 + globalSwell * 0.5) *
+  swellScale *
   responsiveDotScale;
+   
 
     ctx.fillStyle =
       colors[particle.color];
