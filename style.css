@@ -426,6 +426,10 @@ h1 em {
   text-decoration: underline;
 }
 
+.publication.current {
+  display: block;
+}
+
 
 /* Contact */
 
