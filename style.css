@@ -216,9 +216,10 @@ h1 em {
 }
 
 .about-content {
-  width: min(1100px, 100%);
+  width: min(1250px, 100%);
   margin: 0 auto;
 }
+
 
 .about-photo {
   float: left;
@@ -251,6 +252,9 @@ h1 em {
 
 .about-text p {
   margin: 0 0 30px;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .about-text p:first-child {
@@ -298,7 +302,7 @@ h1 em {
 }
 
 .section-inner {
-  width: min(1100px, 100%);
+  width: min(1250px, 100%);
   margin: 0 auto;
 }
 
@@ -386,6 +390,9 @@ h1 em {
  font-size: 1.18rem;
  line-height: 1.7;
   color: #283d40;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .publication-status,
