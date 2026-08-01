@@ -50,10 +50,10 @@ const motionScale = reducedMotion ? 0.18 : 1;
 
 const colors = [
   "rgb(0, 52, 62)",
-  "rgb(0, 76, 86)",
-  "rgb(10, 96, 103)",
-  "rgb(98, 70, 28)",
-  "rgb(142, 96, 28)"
+  "rgb(0, 78, 88)",
+  "rgb(18, 112, 118)",
+  "rgb(145, 94, 28)",
+  "rgb(205, 151, 55)"
 ];
 
 /*
@@ -119,10 +119,10 @@ R = Math.hypot(W, H);
 function selectColor() {
   const choice = Math.random();
 
-  if (choice < 0.50) return 0;
-  if (choice < 0.78) return 1;
-  if (choice < 0.91) return 2;
-  if (choice < 0.97) return 3;
+  if (choice < 0.45) return 0;
+  if (choice < 0.72) return 1;
+  if (choice < 0.84) return 2;
+  if (choice < 0.94) return 3;
 
   return 4;
 }
