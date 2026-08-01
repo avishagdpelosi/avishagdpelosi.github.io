@@ -220,7 +220,7 @@ function drawParticles(time) {
     Math.min(W, H) * 0.012;
 
   /*
-    The spiral continues well beyond the visible page,
+    The spiral continues beyond the visible page,
     preventing a visible outer endpoint.
   */
   const maximumRadius = R * 0.80;
@@ -233,14 +233,21 @@ function drawParticles(time) {
     time * ROTATION_SPEED * motionScale;
 
   /*
-    The flow accelerates and slows rhythmically while
-    always continuing outward.
+    The outward movement periodically accelerates
+    and slows without reversing.
   */
   const pulsedTime =
     time +
     Math.sin(time * 0.00072) *
       850 *
       motionScale;
+
+  /*
+    Position of the pulse as it travels from the
+    centre toward the outer edge.
+  */
+  const pulsePosition =
+    (time * PULSE_SPEED * motionScale) % 1;
 
   for (const particle of particles) {
     const q =
@@ -249,17 +256,11 @@ function drawParticles(time) {
         pulsedTime *
           particle.speed *
           motionScale
-        /*
-  Position of the pulse as it travels from the centre
-  toward the outer edge.
-*/
-const pulsePosition =
-  (time * PULSE_SPEED * motionScale) % 1;
-  
+      ) % 1;
 
     /*
-      Particles pass quickly through the centre and spend
-      increasingly more time toward the outer regions.
+      Particles pass quickly through the centre and
+      remain longer toward the outer regions.
     */
     const progress =
       1 - Math.pow(1 - q, OUTWARD_BIAS);
@@ -269,51 +270,48 @@ const pulsePosition =
       Math.exp(logarithmicRange * progress);
 
     /*
-      Unlike the previous version, dispersion is already
-      substantial near the centre. This prevents the dots
-      from forming a clearly defined central line.
+      A substantial initial spread prevents the centre
+      from appearing as a clearly defined line.
     */
     const spreading =
       INNER_SPREAD +
       baseRadius * SPIRAL_WIDTH;
 
     /*
-      This wave begins near the centre and travels outward
-      through the spiral.
+      Distance between the particle and the travelling
+      pulse front.
     */
-   /*
-  Calculate the distance of each particle from the
-  outward-moving pulse front.
-*/
-let pulseDistance =
-  Math.abs(progress - pulsePosition);
+    let pulseDistance =
+      Math.abs(progress - pulsePosition);
 
-pulseDistance =
-  Math.min(pulseDistance, 1 - pulseDistance);
+    pulseDistance =
+      Math.min(
+        pulseDistance,
+        1 - pulseDistance
+      );
 
-/*
-  A smooth concentrated pulse rather than a continuous
-  sine-wave fluctuation.
-*/
-const growthPulse = Math.exp(
-  -0.5 *
-  Math.pow(
-    pulseDistance / PULSE_WIDTH,
-    2
-  )
-);
+    /*
+      A smooth and concentrated pulse.
+    */
+    const growthPulse = Math.exp(
+      -0.5 *
+      Math.pow(
+        pulseDistance / PULSE_WIDTH,
+        2
+      )
+    );
 
-/*
-  Particles visibly expand outward as the pulse reaches them.
-*/
-const pulsedRadius =
-  baseRadius *
-  (
-    1 +
-    growthPulse *
-      PULSE_STRENGTH *
-      motionScale
-  );
+    /*
+      The spiral expands locally as the pulse passes.
+    */
+    const pulsedRadius =
+      baseRadius *
+      (
+        1 +
+        growthPulse *
+          PULSE_STRENGTH *
+          motionScale
+      );
 
     const radialWobble =
       Math.sin(
@@ -333,16 +331,14 @@ const pulsedRadius =
       TAU * SPIRAL_TURNS * progress +
       rotation;
 
-    /*
-      The increased angular dispersion near the centre
-      further softens the mathematical path.
-    */
     const angle =
       spiralAngle +
       particle.angularJitter *
         (0.06 + progress * 0.075) +
       Math.sin(
-        time * particle.wobbleSpeed * 0.7 +
+        time *
+          particle.wobbleSpeed *
+          0.7 +
         particle.wobblePhase
       ) *
         0.01 *
@@ -369,9 +365,8 @@ const pulsedRadius =
         );
 
     /*
-      The centre begins faintly and gradually becomes
-      more visible, allowing the outer structure to remain
-      visually dominant.
+      The centre remains less accentuated than the
+      outer spiral.
     */
     const centreSoftening =
       0.18 +
@@ -379,12 +374,11 @@ const pulsedRadius =
         smoothstep(progress / 0.24);
 
     /*
-      The travelling pulse also produces a restrained
-      wave of changing luminosity.
+      The pulse creates a visible wave of luminosity.
     */
     const pulseBrightness =
-  0.55 +
-  0.80 * growthPulse;
+      0.55 +
+      0.80 * growthPulse;
 
     const alpha =
       particle.alpha *
@@ -394,10 +388,13 @@ const pulsedRadius =
       centreSoftening *
       pulseBrightness;
 
-   const size =
-  particle.size *
-  (0.65 + progress * 0.5) *
-  (1 + growthPulse * 0.3);
+    /*
+      Dots swell slightly as the pulse passes.
+    */
+    const size =
+      particle.size *
+      (0.65 + progress * 0.5) *
+      (1 + growthPulse * 0.3);
 
     ctx.fillStyle =
       colors[particle.color];
