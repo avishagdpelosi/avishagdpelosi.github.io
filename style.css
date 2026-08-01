@@ -604,4 +604,76 @@ h1 em {
     flex-direction: column;
     align-items: flex-start;
   }
+  /* Mobile landing page */
+
+header {
+  padding: 20px 4vw 14px;
+  gap: 12px;
+}
+
+.name {
+  font-size: 1.05rem;
+  letter-spacing: 0.19em;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(9px, 3vw, 17px);
+  width: 100%;
+  white-space: nowrap;
+}
+
+nav a {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+}
+
+.hero {
+  display: block;
+  min-height: 100svh;
+  padding: 125px 5vw 40px;
+  text-align: center;
+}
+
+.hero-text {
+  position: relative;
+  padding-left: 0;
+  z-index: 2;
+}
+
+h1 span {
+  font-size: clamp(2.8rem, 13vw, 3.25rem);
+}
+
+h1 em {
+  font-size: clamp(1.7rem, 7.8vw, 2.1rem);
+  white-space: nowrap;
+}
+
+.keywords {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  margin-top: 34px;
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.keywords b {
+  margin: 0 3px;
+}
+
+.explore {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  margin-top: 0;
+}
 }
