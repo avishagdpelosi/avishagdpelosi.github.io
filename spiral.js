@@ -39,8 +39,7 @@ const INNER_SPREAD = 13;
 const PULSE_STRENGTH = 0.14;
 const PULSE_WIDTH = 0.075;
 const PULSE_SPEED = 0.00007;
-const FLOW_PULSE_AMPLITUDE = 1600;
-const FLOW_PULSE_RATE = 0.00072;
+
 /*
   Controls the slow rotation of the whole spiral.
 */
@@ -59,6 +58,12 @@ const colors = [
   "rgb(120, 94, 48)",
   "rgb(176, 133, 55)"
 ];
+
+/*
+  Coherent inward-outward movement of the entire spiral.
+*/
+const BREATH_STRENGTH = 0.07;
+const BREATH_SPEED = 0.0012;
 
 
 function clamp(value, minimum, maximum) {
@@ -242,10 +247,18 @@ function drawParticles(time) {
   The dots briefly retreat along the spiral before
   continuing outward.
 */
-const pulsedTime =
-  time +
-  Math.sin(time * FLOW_PULSE_RATE) *
-    FLOW_PULSE_AMPLITUDE *
+/*
+  The underlying spiral movement continues steadily outward.
+*/
+const pulsedTime = time;
+
+/*
+  All particles contract and expand together.
+*/
+const globalBreath =
+  1 +
+  Math.sin(time * BREATH_SPEED) *
+    BREATH_STRENGTH *
     motionScale;
 
   /*
@@ -327,10 +340,10 @@ const pulsedTime =
       (2 + progress * 4.5) *
       motionScale;
 
-    const radius =
-      pulsedRadius +
-      particle.radialJitter * spreading +
-      radialWobble;
+  const radius =
+  pulsedRadius * globalBreath +
+  particle.radialJitter * spreading +
+  radialWobble;
 
     const spiralAngle =
       -Math.PI / 2 +
