@@ -1,6 +1,8 @@
 const canvas = document.getElementById("genesisCanvas");
 const ctx = canvas.getContext("2d");
 
+const MOBILE_SPEED_SCALE = 0.70;
+
 let W, H, CX, CY, R;
 const particles = [];
 
@@ -484,9 +486,12 @@ core.addColorStop(
 function animate(time) {
   ctx.clearRect(0, 0, W, H);
 
- 
-  drawParticles(time);
+  const animationTime =
+    W <= 800
+      ? time * MOBILE_SPEED_SCALE
+      : time;
 
+  drawParticles(animationTime);
 
   requestAnimationFrame(animate);
 }
