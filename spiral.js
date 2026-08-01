@@ -39,6 +39,8 @@ const INNER_SPREAD = 13;
 const PULSE_STRENGTH = 0.14;
 const PULSE_WIDTH = 0.075;
 const PULSE_SPEED = 0.00007;
+const FLOW_PULSE_AMPLITUDE = 1600;
+const FLOW_PULSE_RATE = 0.00072;
 /*
   Controls the slow rotation of the whole spiral.
 */
@@ -236,11 +238,15 @@ function drawParticles(time) {
     The outward movement periodically accelerates
     and slows without reversing.
   */
-  const pulsedTime =
-    time +
-    Math.sin(time * 0.00072) *
-      850 *
-      motionScale;
+  /*
+  The dots briefly retreat along the spiral before
+  continuing outward.
+*/
+const pulsedTime =
+  time +
+  Math.sin(time * FLOW_PULSE_RATE) *
+    FLOW_PULSE_AMPLITUDE *
+    motionScale;
 
   /*
     Position of the pulse as it travels from the
