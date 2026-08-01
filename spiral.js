@@ -62,7 +62,7 @@ const colors = [
 /*
   Coherent inward-outward movement of the entire spiral.
 */
-const BREATH_STRENGTH = 0.16;
+const BREATH_STRENGTH = 0.2;
 const BREATH_SPEED = 0.0012;
 
 
@@ -330,11 +330,22 @@ const globalSwell =
       (2 + progress * 4.5) *
       motionScale;
 
- const radius =
-  baseRadius * globalBreath +
+/*
+  First calculate the particle's complete position,
+  including its atmospheric dispersion.
+*/
+const naturalRadius =
+  baseRadius +
   particle.radialJitter * spreading +
   radialWobble;
 
+/*
+  The entire particle field now contracts and expands
+  coherently.
+*/
+const radius =
+  naturalRadius * globalBreath;
+    
     const spiralAngle =
       -Math.PI / 2 +
       TAU * SPIRAL_TURNS * progress +
