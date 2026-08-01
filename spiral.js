@@ -479,9 +479,9 @@ core.addColorStop(
 function animate(time) {
   ctx.clearRect(0, 0, W, H);
 
-  drawCentralGlow(time);
+ 
   drawParticles(time);
-  drawCore(time);
+
 
   requestAnimationFrame(animate);
 }
