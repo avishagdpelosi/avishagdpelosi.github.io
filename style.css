@@ -26,7 +26,7 @@ header {
 
 .name {
   font-family: Georgia, serif;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -34,7 +34,7 @@ header {
 
 nav a {
   margin-left: 42px;
-  font-size: 0.9rem;
+  font-size: 1.08rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #101414;
@@ -91,7 +91,7 @@ h1 em {
 }
 
 .keywords {
-  font-size: 1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.27em;
   text-transform: uppercase;
   color: #165f64;
@@ -123,7 +123,7 @@ h1 em {
   left: 50%;
   bottom: 28px;
   transform: translateX(-50%);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: #165f64;
@@ -160,7 +160,7 @@ h1 em {
 
 .card h2 {
   margin: 0 0 18px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: #165f64;
@@ -169,10 +169,10 @@ h1 em {
 
 .card p {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.25rem;
+  line-height: 1.65;
   color: #222;
-  max-width: 270px;
+  max-width: 330px;
 }
 
 .card div {
@@ -188,10 +188,10 @@ h1 em {
     gap: 18px;
   }
 
-  nav a {
-    margin: 0 10px;
-    font-size: 0.72rem;
-  }
+nav a {
+  margin: 0 10px;
+  font-size: 0.88rem;
+}
 
   .hero {
     grid-template-columns: 1fr;
@@ -283,15 +283,14 @@ h1 em {
   clear: both;
 }
 
-
-
 .about-text {
   min-width: 0;
   font-family: Georgia, serif;
-  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
-  line-height: 1.85;
+  font-size: clamp(1.25rem, 1.6vw, 1.4rem);
+  line-height: 1.8;
   color: #102f35;
 }
+
 
 .about-text p {
   margin: 0 0 30px;
@@ -329,56 +328,27 @@ h1 em {
   padding-top: 0;
 }
 
-  .about-text {
-    font-size: 1.05rem;
-    line-height: 1.75;
-  }
-.name {
+.about-text {
   font-size: 1.15rem;
+  line-height: 1.75;
+}
+  
+.name {
+  font-size: 1.25rem;
 }
 
 nav a {
-  font-size: 0.82rem;
+  font-size: 0.88rem;
 }
 
 .keywords {
-  font-size: 1rem;
-}
-
-.about-text {
-  font-size: 1.08rem;
+  font-size: 1.05rem;
 }
 
 
-}
-/* Larger, more readable typography */
 
-.name {
-  font-size: 1.35rem;
 }
 
-nav a {
-  font-size: 1rem;
-}
-
-.keywords {
-  font-size: 1.1rem;
-}
-
-.about-text {
-  font-size: clamp(1.15rem, 1.5vw, 1.3rem);
-  line-height: 1.8;
-}
-
-.card h2 {
-  font-size: 1.15rem;
-}
-
-.card p {
-  font-size: 1.12rem;
-  line-height: 1.65;
-  max-width: 330px;
-}
 .quote-author {
   margin: 20px 0 0;
   font-size: 1rem;
@@ -446,7 +416,7 @@ nav a {
 .research-area h3 {
   margin: 0 0 20px;
   font-family: Georgia, serif;
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   font-weight: 400;
   line-height: 1.35;
   color: #102f35;
@@ -455,7 +425,7 @@ nav a {
 .research-area p {
   margin: 0;
   font-family: Georgia, serif;
-  font-size: 1.05rem;
+  font-size: clamp(1.18rem, 1.35vw, 1.28rem);
   line-height: 1.75;
   color: #30474a;
 }
@@ -480,7 +450,7 @@ nav a {
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(11, 111, 120, 0.35);
   font-family: Georgia, serif;
-  font-size: 1.45rem;
+  font-size: 1.65rem;
   font-weight: 400;
   color: #0b6f78;
 }
@@ -496,15 +466,15 @@ nav a {
 .publication p {
   margin: 0;
   font-family: Georgia, serif;
-  font-size: 1.03rem;
-  line-height: 1.65;
+ font-size: 1.18rem;
+ line-height: 1.7;
   color: #283d40;
 }
 
 .publication-status,
 .publication-year {
   padding-top: 3px;
-  font-size: 0.76rem;
+  font-size: 0.88rem;
   line-height: 1.5;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -535,7 +505,7 @@ nav a {
 .contact-affiliation {
   margin: 0 0 40px;
   font-family: Georgia, serif;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   line-height: 1.7;
 }
 
@@ -547,7 +517,7 @@ nav a {
 
 .contact-links a {
   color: #e9c878;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
@@ -578,6 +548,15 @@ nav a {
     grid-template-columns: 1fr;
     gap: 8px;
   }
+
+  .card p {
+  font-size: 1.15rem;
+}
+
+.research-area p,
+.publication p {
+  font-size: 1.12rem;
+}
 
   .publication-status,
   .publication-year {
