@@ -25,6 +25,18 @@ const OUTWARD_BIAS = 2.0;
 */
 
 const SPIRAL_WIDTH = 0.105;
+
+/*
+  Minimum dispersion near the centre.
+  Increase this if the central spiral line is still too visible.
+*/
+const INNER_SPREAD = 13;
+
+/*
+  Strength of the outward travelling pulse.
+  Try values between 0.025 and 0.06.
+*/
+const PULSE_STRENGTH = 0.045;
 /*
   Controls the slow rotation of the whole spiral.
 */
@@ -202,12 +214,12 @@ function drawCentralGlow(time) {
 }
 
 function drawParticles(time) {
-  const minimumRadius = Math.min(W, H) * 0.012;
+  const minimumRadius =
+    Math.min(W, H) * 0.012;
 
   /*
-    Particles continue far beyond the visible page.
-    They therefore disappear naturally outside the canvas
-    rather than ending at a visible circular boundary.
+    The spiral continues well beyond the visible page,
+    preventing a visible outer endpoint.
   */
   const maximumRadius = R * 0.80;
 
@@ -218,52 +230,74 @@ function drawParticles(time) {
   const rotation =
     time * ROTATION_SPEED * motionScale;
 
-  const breath =
-    1 +
-    Math.sin(time * 0.00065) *
-      0.014 *
+  /*
+    The flow accelerates and slows rhythmically while
+    always continuing outward.
+  */
+  const pulsedTime =
+    time +
+    Math.sin(time * 0.00072) *
+      850 *
       motionScale;
 
   for (const particle of particles) {
-    /*
-      q moves continuously from 0 to 1.
-      At 1, the particle returns to the centre.
-    */
     const q =
       (
         particle.phase +
-        time * particle.speed * motionScale
+        pulsedTime *
+          particle.speed *
+          motionScale
       ) % 1;
 
     /*
-      This easing causes particles to move quickly through
-      the centre and spend more time near the outside.
-      The visible number of dots therefore increases with radius.
+      Particles pass quickly through the centre and spend
+      increasingly more time toward the outer regions.
     */
     const progress =
       1 - Math.pow(1 - q, OUTWARD_BIAS);
 
-    /*
-      r = a × e^(bθ), the logarithmic spiral equation.
-    */
     const baseRadius =
       minimumRadius *
       Math.exp(logarithmicRange * progress);
 
+    /*
+      Unlike the previous version, dispersion is already
+      substantial near the centre. This prevents the dots
+      from forming a clearly defined central line.
+    */
     const spreading =
-      2 +
+      INNER_SPREAD +
       baseRadius * SPIRAL_WIDTH;
+
+    /*
+      This wave begins near the centre and travels outward
+      through the spiral.
+    */
+    const pulseWave = Math.sin(
+      time * 0.0008 * motionScale -
+      progress * TAU * 2.15
+    );
+
+    const pulsedRadius =
+      baseRadius *
+      (
+        1 +
+        pulseWave *
+          PULSE_STRENGTH *
+          (0.55 + progress * 0.45) *
+          motionScale
+      );
 
     const radialWobble =
       Math.sin(
         time * particle.wobbleSpeed +
         particle.wobblePhase
       ) *
-      (1.2 + progress * 3.5) *
+      (2 + progress * 4.5) *
       motionScale;
 
     const radius =
-      baseRadius * breath +
+      pulsedRadius +
       particle.radialJitter * spreading +
       radialWobble;
 
@@ -272,26 +306,32 @@ function drawParticles(time) {
       TAU * SPIRAL_TURNS * progress +
       rotation;
 
+    /*
+      The increased angular dispersion near the centre
+      further softens the mathematical path.
+    */
     const angle =
       spiralAngle +
       particle.angularJitter *
-        (0.012 + progress * 0.075) +
+        (0.06 + progress * 0.075) +
       Math.sin(
         time * particle.wobbleSpeed * 0.7 +
         particle.wobblePhase
       ) *
-        0.008 *
+        0.01 *
         motionScale;
 
-    const x = CX + Math.cos(angle) * radius;
-    const y = CY + Math.sin(angle) * radius;
+    const x =
+      CX + Math.cos(angle) * radius;
 
-    /*
-      Particles fade in near the centre and fade out
-      before returning to the beginning.
-    */
-    const fadeIn = smoothstep(q / 0.045);
-    const fadeOut = smoothstep((1 - q) / 0.04);
+    const y =
+      CY + Math.sin(angle) * radius;
+
+    const fadeIn =
+      smoothstep(q / 0.045);
+
+    const fadeOut =
+      smoothstep((1 - q) / 0.04);
 
     const twinkle =
       0.65 +
@@ -301,36 +341,70 @@ function drawParticles(time) {
           particle.twinklePhase
         );
 
+    /*
+      The centre begins faintly and gradually becomes
+      more visible, allowing the outer structure to remain
+      visually dominant.
+    */
+    const centreSoftening =
+      0.18 +
+      0.82 *
+        smoothstep(progress / 0.24);
+
+    /*
+      The travelling pulse also produces a restrained
+      wave of changing luminosity.
+    */
+    const pulseBrightness =
+      0.72 +
+      0.28 *
+        ((pulseWave + 1) / 2);
+
     const alpha =
       particle.alpha *
       fadeIn *
       fadeOut *
-      twinkle;
+      twinkle *
+      centreSoftening *
+      pulseBrightness;
 
     const size =
       particle.size *
-      (0.7 + progress * 0.45);
+      (0.65 + progress * 0.5);
 
-    ctx.fillStyle = colors[particle.color];
+    ctx.fillStyle =
+      colors[particle.color];
 
     if (particle.spark) {
-      ctx.globalAlpha = alpha * 0.13;
+      ctx.globalAlpha =
+        alpha * 0.13;
 
       ctx.beginPath();
-      ctx.arc(x, y, size * 4.2, 0, TAU);
+      ctx.arc(
+        x,
+        y,
+        size * 4.2,
+        0,
+        TAU
+      );
       ctx.fill();
     }
 
     ctx.globalAlpha = alpha;
 
     ctx.beginPath();
-    ctx.arc(x, y, size, 0, TAU);
+    ctx.arc(
+      x,
+      y,
+      size,
+      0,
+      TAU
+    );
     ctx.fill();
   }
 
   ctx.globalAlpha = 1;
 }
-
 
 function drawCore(time) {
   const pulse =
