@@ -262,19 +262,18 @@ const pulsedTime = time;
 /*
   All particles contract and expand together.
 */
+const breathWave =
+  Math.sin(time * BREATH_SPEED);
+
 const globalBreath =
   1 +
-  Math.sin(time * BREATH_SPEED) *
+  breathWave *
     BREATH_STRENGTH *
     motionScale;
-/*
-  Ranges from 0 to 1 and remains synchronized
-  with the global inward-outward movement.
-*/
+
 const globalSwell =
-  (
-    Math.sin(time * BREATH_SPEED) + 1
-  ) / 2;
+  (breathWave + 1) / 2;
+  
   /*
     Position of the pulse as it travels from the
     centre toward the outer edge.
@@ -343,8 +342,46 @@ const naturalRadius =
   The entire particle field now contracts and expands
   coherently.
 */
+/*
+  Outer particles receive proportional movement.
+*/
+const proportionalMovement =
+  naturalRadius *
+  BREATH_STRENGTH *
+  motionScale;
+
+/*
+  Inner particles receive a minimum visible displacement.
+  This influence gradually disappears toward the outside.
+*/
+const innerMovement =
+  Math.min(W, H) *
+  0.018 *
+  (1 - progress) *
+  motionScale;
+
+/*
+  Prevent very central particles from crossing too far
+  through the origin.
+*/
+const safeInnerMovement =
+  Math.min(
+    innerMovement,
+    naturalRadius * 0.75
+  );
+
+const movementAmplitude =
+  Math.max(
+    proportionalMovement,
+    safeInnerMovement
+  );
+
 const radius =
-  naturalRadius * globalBreath;
+  Math.max(
+    0,
+    naturalRadius +
+      breathWave * movementAmplitude
+  );
     
     const spiralAngle =
       -Math.PI / 2 +
