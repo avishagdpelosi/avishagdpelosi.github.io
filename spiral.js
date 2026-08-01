@@ -106,8 +106,13 @@ function resize() {
   retains its own space, but the spiral now occupies the
   complete landing page.
 */
-CX = W * 0.58;
-CY = H * 0.50;
+if (W <= 800) {
+  CX = W * 0.52;
+  CY = H * 0.62;
+} else {
+  CX = W * 0.58;
+  CY = H * 0.50;
+}
 
 /*
   The diagonal measurement allows the spiral to continue
