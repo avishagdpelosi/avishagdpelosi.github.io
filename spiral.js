@@ -2,6 +2,7 @@ const canvas = document.getElementById("genesisCanvas");
 const ctx = canvas.getContext("2d");
 
 const MOBILE_SPEED_SCALE = 0.70;
+const DESKTOP_DOT_SCALE = 1.3;
 
 let W, H, CX, CY, R;
 const particles = [];
@@ -395,13 +396,20 @@ const globalSwell =
   0.92
 );
 
+    const responsiveDotScale =
+  W > 800
+    ? DESKTOP_DOT_SCALE
+    : 1;
+    
     /*
       Dots swell slightly as the pulse passes.
     */
-   const size =
+  
+    const size =
   particle.size *
   (0.65 + progress * 0.5) *
-  (0.82 + globalSwell * 0.5);
+  (0.82 + globalSwell * 0.5) *
+  responsiveDotScale;
 
     ctx.fillStyle =
       colors[particle.color];
