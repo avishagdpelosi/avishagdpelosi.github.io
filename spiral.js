@@ -391,10 +391,11 @@ const radius =
     /*
       The pulse creates a visible wave of luminosity.
     */
-   const pulseBrightness =
-  0.50 +
-  0.50 * globalSwell;
-
+   /*
+  The global pulse no longer reduces particle visibility.
+*/
+const pulseBrightness = 1;
+    
    const alpha = clamp(
   particle.alpha *
     fadeIn *
