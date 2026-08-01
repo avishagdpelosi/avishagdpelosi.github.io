@@ -371,13 +371,13 @@ const radius =
     const fadeOut =
       smoothstep((1 - q) / 0.04);
 
-    const twinkle =
-      0.65 +
-      0.35 *
-        Math.sin(
-          time * particle.twinkleSpeed +
-          particle.twinklePhase
-        );
+   const twinkle =
+  0.90 +
+  0.10 *
+    Math.sin(
+      time * particle.twinkleSpeed +
+      particle.twinklePhase
+    );
 
     /*
       The centre remains less accentuated than the
@@ -392,8 +392,8 @@ const radius =
       The pulse creates a visible wave of luminosity.
     */
    const pulseBrightness =
-  0.65 +
-  0.55 * globalSwell;
+  0.50 +
+  0.50 * globalSwell;
 
    const alpha = clamp(
   particle.alpha *
