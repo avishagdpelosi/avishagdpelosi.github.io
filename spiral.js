@@ -82,12 +82,21 @@ function resize() {
 
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-  CX = W / 2;
-  CY = H / 2;
 
- R = Math.min(W, H) * 0.47;
+/*
+  The centre remains slightly to the right so that the title
+  retains its own space, but the spiral now occupies the
+  complete landing page.
+*/
+CX = W * 0.58;
+CY = H * 0.50;
+
+/*
+  The diagonal measurement allows the spiral to continue
+  beyond every visible edge of the canvas.
+*/
+R = Math.hypot(W, H);
 }
-
 
 function selectColor() {
   const choice = Math.random();
@@ -154,13 +163,16 @@ function drawCentralGlow(time) {
   const pulse =
     1 + Math.sin(time * 0.0007) * 0.035 * motionScale;
 
+  const glowRadius =
+    Math.min(W, H) * 0.68 * pulse;
+
   const glow = ctx.createRadialGradient(
     CX,
     CY,
     0,
     CX,
     CY,
-    R * 1.18 * pulse
+    glowRadius
   );
 
   glow.addColorStop(
@@ -184,15 +196,20 @@ function drawCentralGlow(time) {
   );
 
   ctx.beginPath();
-  ctx.arc(CX, CY, R * 1.25, 0, TAU);
+  ctx.arc(CX, CY, glowRadius, 0, TAU);
   ctx.fillStyle = glow;
   ctx.fill();
 }
 
-
 function drawParticles(time) {
-  const minimumRadius = R * 0.018;
-  const maximumRadius = R * 1.02;
+  const minimumRadius = Math.min(W, H) * 0.012;
+
+  /*
+    Particles continue far beyond the visible page.
+    They therefore disappear naturally outside the canvas
+    rather than ending at a visible circular boundary.
+  */
+  const maximumRadius = R * 0.80;
 
   const logarithmicRange = Math.log(
     maximumRadius / minimumRadius
@@ -322,13 +339,16 @@ function drawCore(time) {
       0.12 *
       motionScale;
 
+  const coreRadius =
+    Math.min(W, H) * 0.065 * pulse;
+
   const core = ctx.createRadialGradient(
     CX,
     CY,
     0,
     CX,
     CY,
-    R * 0.085 * pulse
+    coreRadius
   );
 
   core.addColorStop(
@@ -347,7 +367,7 @@ function drawCore(time) {
   );
 
   ctx.beginPath();
-  ctx.arc(CX, CY, R * 0.09 * pulse, 0, TAU);
+  ctx.arc(CX, CY, coreRadius, 0, TAU);
   ctx.fillStyle = core;
   ctx.fill();
 
