@@ -197,14 +197,14 @@ function drawCentralGlow(time) {
     glowRadius
   );
 
- glow.addColorStop(
+glow.addColorStop(
   0,
-  "rgba(255, 255, 249, 0.58)"
+  "rgba(255, 255, 255, 0.82)"
 );
 
 glow.addColorStop(
   0.12,
-  "rgba(247, 222, 164, 0.10)"
+  "rgba(225, 247, 246, 0.14)"
 );
 
 glow.addColorStop(
@@ -477,20 +477,20 @@ function drawCore(time) {
     coreRadius
   );
 
- core.addColorStop(
+core.addColorStop(
   0,
-  "rgba(255, 253, 235, 0.68)"
+  "rgba(255, 255, 255, 0.98)"
 );
 
 core.addColorStop(
   0.3,
-  "rgba(205, 157, 68, 0.17)"
+  "rgba(218, 245, 244, 0.28)"
 );
 
-  core.addColorStop(
-    1,
-    "rgba(0, 98, 106, 0)"
-  );
+core.addColorStop(
+  1,
+  "rgba(0, 98, 106, 0)"
+);
 
   ctx.beginPath();
   ctx.arc(CX, CY, coreRadius, 0, TAU);
@@ -499,7 +499,7 @@ core.addColorStop(
 
   ctx.beginPath();
   ctx.arc(CX, CY, 2.6 * pulse, 0, TAU);
-  ctx.fillStyle = "rgba(117, 88, 37, 0.72)";
+ ctx.fillStyle = "rgba(255, 255, 255, 0.96)";
   ctx.fill();
 }
 
