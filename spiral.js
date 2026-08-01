@@ -237,8 +237,11 @@ function drawParticles(time) {
     The spiral continues beyond the visible page,
     preventing a visible outer endpoint.
   */
-  const maximumRadius = R * 0.80;
-
+ const maximumRadius =
+  W <= 800
+    ? Math.min(W, H) * 0.72
+    : R * 0.80;
+  
   const logarithmicRange = Math.log(
     maximumRadius / minimumRadius
   );
@@ -278,7 +281,12 @@ const globalSwell =
     Position of the pulse as it travels from the
     centre toward the outer edge.
   */
- 
+
+  const activeSpiralTurns =
+  W <= 800
+    ? 3.4
+    : SPIRAL_TURNS;
+
   for (const particle of particles) {
     const q =
       (
@@ -383,10 +391,10 @@ const radius =
       breathWave * movementAmplitude
   );
     
-    const spiralAngle =
-      -Math.PI / 2 +
-      TAU * SPIRAL_TURNS * progress +
-      rotation;
+  const spiralAngle =
+  -Math.PI / 2 +
+  TAU * activeSpiralTurns * progress +
+  rotation;
 
     const angle =
       spiralAngle +
