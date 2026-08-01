@@ -7,30 +7,28 @@ const particles = [];
 const TAU = Math.PI * 2;
 
 /* Main adjustable values */
-
 const PARTICLE_COUNT =
-  window.innerWidth <= 600 ? 6500 :
-  window.innerWidth <= 950 ? 11000 :
-  18000;
+  window.innerWidth <= 600 ? 8000 :
+  window.innerWidth <= 950 ? 15000 :
+  25000;
 
-const SPIRAL_TURNS = 3.2;
-
+const SPIRAL_TURNS = 4.8;
 /*
   Higher values place more particles toward the outside.
   Try values between 1.8 and 3.
 */
-const OUTWARD_BIAS = 2.35;
+const OUTWARD_BIAS = 2.0;
 
 /*
   Controls how diffuse the spiral becomes as it expands.
   Try values between 0.04 and 0.09.
 */
 
-const SPIRAL_WIDTH = 0.095;
+const SPIRAL_WIDTH = 0.105;
 /*
   Controls the slow rotation of the whole spiral.
 */
-const ROTATION_SPEED = 0.000018;
+const ROTATION_SPEED = 0.000015;
 
 const reducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
