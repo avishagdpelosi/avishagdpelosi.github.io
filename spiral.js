@@ -52,17 +52,17 @@ const reducedMotion = window.matchMedia(
 const motionScale = reducedMotion ? 0.18 : 1;
 
 const colors = [
-  "rgb(0, 72, 82)",
-  "rgb(5, 96, 105)",
-  "rgb(35, 119, 124)",
-  "rgb(120, 94, 48)",
-  "rgb(176, 133, 55)"
+  "rgb(0, 52, 62)",
+  "rgb(0, 76, 86)",
+  "rgb(10, 96, 103)",
+  "rgb(98, 70, 28)",
+  "rgb(142, 96, 28)"
 ];
 
 /*
   Coherent inward-outward movement of the entire spiral.
 */
-const BREATH_STRENGTH = 0.09;
+const BREATH_STRENGTH = 0.16;
 const BREATH_SPEED = 0.0012;
 
 
@@ -196,26 +196,27 @@ function drawCentralGlow(time) {
     glowRadius
   );
 
-  glow.addColorStop(
-    0,
-    "rgba(255, 255, 249, 0.98)"
-  );
+ glow.addColorStop(
+  0,
+  "rgba(255, 255, 249, 0.58)"
+);
 
-  glow.addColorStop(
-    0.12,
-    "rgba(247, 222, 164, 0.22)"
-  );
+glow.addColorStop(
+  0.12,
+  "rgba(247, 222, 164, 0.10)"
+);
 
-  glow.addColorStop(
-    0.42,
-    "rgba(26, 123, 128, 0.055)"
-  );
+glow.addColorStop(
+  0.42,
+  "rgba(26, 123, 128, 0.025)"
+);
 
-  glow.addColorStop(
-    1,
-    "rgba(255, 255, 255, 0)"
-  );
+glow.addColorStop(
+  1,
+  "rgba(255, 255, 255, 0)"
+);
 
+  
   ctx.beginPath();
   ctx.arc(CX, CY, glowRadius, 0, TAU);
   ctx.fillStyle = glow;
@@ -396,16 +397,20 @@ const globalBreath =
       The pulse creates a visible wave of luminosity.
     */
     const pulseBrightness =
-      0.55 +
-      0.80 * growthPulse;
+  0.78 +
+  0.50 * growthPulse;
 
-    const alpha =
-      particle.alpha *
-      fadeIn *
-      fadeOut *
-      twinkle *
-      centreSoftening *
-      pulseBrightness;
+   const alpha = clamp(
+  particle.alpha *
+    fadeIn *
+    fadeOut *
+    twinkle *
+    centreSoftening *
+    pulseBrightness *
+    1.5,
+  0,
+  0.92
+);
 
     /*
       Dots swell slightly as the pulse passes.
@@ -468,15 +473,15 @@ function drawCore(time) {
     coreRadius
   );
 
-  core.addColorStop(
-    0,
-    "rgba(255, 253, 235, 0.95)"
-  );
+ core.addColorStop(
+  0,
+  "rgba(255, 253, 235, 0.68)"
+);
 
-  core.addColorStop(
-    0.3,
-    "rgba(205, 157, 68, 0.28)"
-  );
+core.addColorStop(
+  0.3,
+  "rgba(205, 157, 68, 0.17)"
+);
 
   core.addColorStop(
     1,
