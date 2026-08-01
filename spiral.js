@@ -60,7 +60,7 @@ const colors = [
   Coherent inward-outward movement of the entire spiral.
 */
 const BREATH_STRENGTH = 0.16;
-const BREATH_SPEED = 0.0012;
+const BREATH_SPEED = 0.0008;
 
 
 function clamp(value, minimum, maximum) {
