@@ -36,7 +36,9 @@ const INNER_SPREAD = 13;
   Strength of the outward travelling pulse.
   Try values between 0.025 and 0.06.
 */
-const PULSE_STRENGTH = 0.045;
+const PULSE_STRENGTH = 0.14;
+const PULSE_WIDTH = 0.075;
+const PULSE_SPEED = 0.00007;
 /*
   Controls the slow rotation of the whole spiral.
 */
@@ -247,7 +249,13 @@ function drawParticles(time) {
         pulsedTime *
           particle.speed *
           motionScale
-      ) % 1;
+        /*
+  Position of the pulse as it travels from the centre
+  toward the outer edge.
+*/
+const pulsePosition =
+  (time * PULSE_SPEED * motionScale) % 1;
+  
 
     /*
       Particles pass quickly through the centre and spend
@@ -273,20 +281,39 @@ function drawParticles(time) {
       This wave begins near the centre and travels outward
       through the spiral.
     */
-    const pulseWave = Math.sin(
-      time * 0.0008 * motionScale -
-      progress * TAU * 2.15
-    );
+   /*
+  Calculate the distance of each particle from the
+  outward-moving pulse front.
+*/
+let pulseDistance =
+  Math.abs(progress - pulsePosition);
 
-    const pulsedRadius =
-      baseRadius *
-      (
-        1 +
-        pulseWave *
-          PULSE_STRENGTH *
-          (0.55 + progress * 0.45) *
-          motionScale
-      );
+pulseDistance =
+  Math.min(pulseDistance, 1 - pulseDistance);
+
+/*
+  A smooth concentrated pulse rather than a continuous
+  sine-wave fluctuation.
+*/
+const growthPulse = Math.exp(
+  -0.5 *
+  Math.pow(
+    pulseDistance / PULSE_WIDTH,
+    2
+  )
+);
+
+/*
+  Particles visibly expand outward as the pulse reaches them.
+*/
+const pulsedRadius =
+  baseRadius *
+  (
+    1 +
+    growthPulse *
+      PULSE_STRENGTH *
+      motionScale
+  );
 
     const radialWobble =
       Math.sin(
@@ -356,9 +383,8 @@ function drawParticles(time) {
       wave of changing luminosity.
     */
     const pulseBrightness =
-      0.72 +
-      0.28 *
-        ((pulseWave + 1) / 2);
+  0.55 +
+  0.80 * growthPulse;
 
     const alpha =
       particle.alpha *
@@ -368,9 +394,10 @@ function drawParticles(time) {
       centreSoftening *
       pulseBrightness;
 
-    const size =
-      particle.size *
-      (0.65 + progress * 0.5);
+   const size =
+  particle.size *
+  (0.65 + progress * 0.5) *
+  (1 + growthPulse * 0.3);
 
     ctx.fillStyle =
       colors[particle.color];
