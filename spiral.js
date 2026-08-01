@@ -142,6 +142,7 @@ function initParticles() {
         phase determines where the particle begins in its
         journey from the centre to the outside.
       */
+     atmosphere: Math.random() < 0.30,
       phase: Math.random(),
 
       /*
@@ -285,6 +286,11 @@ const globalBreath =
     const progress =
       1 - Math.pow(1 - q, OUTWARD_BIAS);
 
+    const atmosphere =
+  particle.atmosphere
+    ? smoothstep((progress - 0.25) / 0.65)
+    : 0;
+
     const baseRadius =
       minimumRadius *
       Math.exp(logarithmicRange * progress);
@@ -294,8 +300,11 @@ const globalBreath =
       from appearing as a clearly defined line.
     */
     const spreading =
-      INNER_SPREAD +
-      baseRadius * SPIRAL_WIDTH;
+  (
+    INNER_SPREAD +
+    baseRadius * SPIRAL_WIDTH
+  ) *
+  (1 + atmosphere * 1.8);
 
     /*
       Distance between the particle and the travelling
@@ -354,14 +363,9 @@ const globalBreath =
     const angle =
       spiralAngle +
       particle.angularJitter *
-        (0.06 + progress * 0.075) +
-      Math.sin(
-        time *
-          particle.wobbleSpeed *
-          0.7 +
-        particle.wobblePhase
-      ) *
-        0.01 *
+  (0.06 + progress * 0.075) *
+  (1 + atmosphere * 3)
+      
         motionScale;
 
     const x =
