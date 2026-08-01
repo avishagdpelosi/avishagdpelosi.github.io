@@ -25,8 +25,8 @@ const OUTWARD_BIAS = 2.35;
   Controls how diffuse the spiral becomes as it expands.
   Try values between 0.04 and 0.09.
 */
-const SPIRAL_WIDTH = 0.065;
 
+const SPIRAL_WIDTH = 0.095;
 /*
   Controls the slow rotation of the whole spiral.
 */
@@ -87,7 +87,7 @@ function resize() {
   CX = W / 2;
   CY = H / 2;
 
-  R = Math.min(W, H) * 0.44;
+ R = Math.min(W, H) * 0.47;
 }
 
 
