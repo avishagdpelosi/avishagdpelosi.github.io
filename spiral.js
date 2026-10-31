@@ -237,10 +237,11 @@ function drawParticles(time) {
     The spiral continues beyond the visible page,
     preventing a visible outer endpoint.
   */
- const maximumRadius =
+ 
+  const maximumRadius =
   W <= 800
     ? Math.min(W, H) * 0.72
-    : R * 0.80;
+    : R * 0.65;
   
   const logarithmicRange = Math.log(
     maximumRadius / minimumRadius
