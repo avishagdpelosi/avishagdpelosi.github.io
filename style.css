@@ -973,4 +973,13 @@ h1 em {
     justify-self: center;
     overflow: hidden;
   }
+  .keywords {
+  font-size: 0.9rem;
+  letter-spacing: 0.17em;
+  white-space: nowrap;
+}
+
+.keywords b {
+  margin: 0 8px;
+}
 }
