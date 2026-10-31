@@ -950,3 +950,27 @@ h1 em {
     padding: 23px;
   }
 }
+@media (min-width: 951px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 2vw;
+  }
+
+  h1 span {
+    font-size: clamp(3.4rem, 5.4vw, 5.6rem);
+  }
+
+  h1 em {
+    font-size: clamp(2.5rem, 4.1vw, 4.2rem);
+  }
+
+  .spiral-wrap {
+    position: relative;
+    inset: auto;
+    width: min(100%, 700px);
+    height: auto;
+    aspect-ratio: 1;
+    justify-self: center;
+    overflow: hidden;
+  }
+}
